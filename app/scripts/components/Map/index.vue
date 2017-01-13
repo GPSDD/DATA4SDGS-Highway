@@ -83,7 +83,8 @@
 
       addClusterLayer() {
         this.$store.dispatch('setMarkerLayer').then(() => this.$store.dispatch('setClusterLayer')).then(() => {
-          new BubbleClusterLayer(this.clusterLayer, {}).addTo(this.map);
+          const clusterLayer = new BubbleClusterLayer(this.clusterLayer);
+          clusterLayer.addTo(this.map);
         });
       },
 

@@ -66,7 +66,7 @@ export default class BubbleClusterLayer {
         icon: pruneCluster.BuildLeafletClusterIcon(cluster)
       });
 
-      // m.bindPopup(BubbleClusterLayer.setInfowindowClusterHtml(cluster));
+      m.bindPopup(BubbleClusterLayer.setInfowindowClusterHtml(cluster));
 
       // m.on('click', () => {
       //   // Compute the  cluster bounds (it's slow : O(n))
@@ -85,13 +85,13 @@ export default class BubbleClusterLayer {
       //   }
       // });
 
-      // m.on('mouseover', function mouseover() {
-      //   this.openPopup();
-      // });
+      m.on('mouseover', function mouseover() {
+        this.openPopup();
+      });
       //
-      // m.on('mouseout', function mouseout() {
-      //   this.closePopup();
-      // });
+      m.on('mouseout', function mouseout() {
+        this.closePopup();
+      });
 
       return m;
     };
@@ -135,11 +135,27 @@ export default class BubbleClusterLayer {
   }
 
   static setInfowindowClusterHtml(properties) {
+    const columns = BubbleClusterLayer.getClusterGroupedFeatures(properties._clusterMarkers); // eslint-disable-line
     return (`
       <div class="c-infowindow -no-iteraction">
-      <h3>${properties.population} alerts</h3>
+      <h3>${columns.get('count').length} alerts</h3>
+      <p>All alerts ${columns.get('count')}</p>
       </div>`
     );
+  }
+
+  static getClusterGroupedFeatures(markers) {
+    const features = markers.map(marker => marker.data.feature);
+    const group = new Map();
+    features.forEach((feature) => {
+      Object.entries(feature).forEach((entries) => {
+        const existing = group.get(entries[0]);
+        const newEntry = entries[1];
+        const values = existing ? [...existing, newEntry] : [newEntry];
+        if (newEntry) group.set(entries[0], values);
+      });
+    });
+    return group;
   }
 
   static getSize(v) {
