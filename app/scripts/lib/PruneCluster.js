@@ -49,7 +49,6 @@ var PruneCluster;
     var Cluster = (function (_super) {
         __extends(Cluster, _super);
         function Cluster(marker) {
-            Cluster.ENABLE_MARKERS_LIST = true;
             _super.call(this);
             this.stats = [0, 0, 0, 0, 0, 0, 0, 0];
             this.data = {};

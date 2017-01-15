@@ -23,6 +23,7 @@ export default class BubbleClusterLayer {
     // MARKER
     pruneCluster.BuildLeafletIcon = (feature) => {
       const location = feature.geometry.coordinates;
+      PruneCluster.Cluster.ENABLE_MARKERS_LIST = true;
       const marker = new PruneCluster.Marker(location[1], location[0]); // lat, lng
       marker.data.feature = feature;
       return marker;
@@ -97,6 +98,7 @@ export default class BubbleClusterLayer {
     };
 
     pruneCluster.BuildLeafletClusterIcon = (cluster) => {
+      cluster.markers = cluster.GetClusterMarkers(); // eslint-disable-line
       const cuantity = cluster.population;
       const icon = pruneCluster.originalIcon(cluster);
       let size = sizesDic.medium;
@@ -134,8 +136,8 @@ export default class BubbleClusterLayer {
     );
   }
 
-  static setInfowindowClusterHtml(properties) {
-    const columns = BubbleClusterLayer.getClusterGroupedFeatures(properties._clusterMarkers); // eslint-disable-line
+  static setInfowindowClusterHtml(cluster) {
+    const columns = BubbleClusterLayer.getClusterGroupedFeatures(cluster.markers);
     return (`
       <div class="c-infowindow -no-iteraction">
       <h3>${columns.get('count').length} alerts</h3>
