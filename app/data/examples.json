@@ -36,5 +36,17 @@
       "/static/examples/gee-nightlights-1.png",
       "/static/examples/gee-nightlights-2.png"
     ]
+  },
+  {
+      "id": "resource-watch-vs-world-bank-visualization",
+      "title": "Resource Watch vs World Bank Visualization",
+      "url": "https://gpsdd.github.io/Resource-Projects-Visualizations/",
+      "author": "GPSDD",
+      "date": "July 9, 2018",
+      "sourceCode": "https://github.com/GPSDD/Resource-Projects-Visualizations",
+      "intro": "Visualization showing data comparisons of the Resource Projects data with World Bank Data.",
+      "content": "Mineral Rents vs Resource Payments view for countries across the globe. Visualisation built using D3.js and vue.js",
+      "thumb": "/static/examples/resource-watch-vs-world-bank-visualization.png",
+      "html": "<iframe src='https://gpsdd.github.io/Resource-Projects-Visualizations/' width='100%' height='600px' frameborder='0'></iframe>"
   }
 ]
