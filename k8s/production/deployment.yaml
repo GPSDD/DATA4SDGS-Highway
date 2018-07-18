@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
       - name: {name}
-        image: vizzuality/{name}
+        image: apihighways/{name}
         imagePullPolicy: Always
         resources:
           requests:
