@@ -56,8 +56,17 @@ const searchDatasets = {
         commit(SET_SEARCH_DATASETS_ERROR, false);
 
         let taxnomyFilter = '';
+        let providerFilter = '';
         if (state.search.filters.dataSources && state.search.filters.dataSources.length > 0) {
-          taxnomyFilter = `&vocabulary[legacy]=${state.search.filters.dataSources.map(encodeURIComponent).join(',')}`;
+          const fullFilters = state.search.filters.dataSources
+                                    .map(x => filterSettings.dataSources.find(y => y.value === x));
+          console.log('fullfilters', fullFilters);
+          const providers = fullFilters.filter(x => x.provider);
+          const taxnomies = fullFilters.filter(x => !x.provider);
+
+          console.log(state.search.filters.dataSources);
+          providerFilter = providers && providers.length > 0 ? `&provider=${providers.map(x => encodeURIComponent(x.value)).join(',')}` : '';
+          taxnomyFilter = taxnomies && taxnomies.length > 0 ? `&vocabulary[legacy]=${taxnomies.map(x => encodeURIComponent(x.value)).join(',')}` : '';
         }
 
         const graphFilter = Object.assign({}, state.search.filters);
@@ -69,7 +78,7 @@ const searchDatasets = {
         const search = state.search.query && state.search.query !== '' ? `&name=${queryEncoded}` : '';
 
         // Using XMLHttpRequest to be able to cancel request
-        const url = `${BASE_URL}/v1/dataset?published=true&includes=metadata&page[size]=500${search}${tags}${taxnomyFilter}`;
+        const url = `${BASE_URL}/v1/dataset?published=true&includes=metadata&page[size]=100${search}${tags}${taxnomyFilter}${providerFilter}`;
         if (xhr) {
           xhr.abort();
         }
