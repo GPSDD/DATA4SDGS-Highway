@@ -28,14 +28,20 @@
   </div>
   <div class="c-examples-detail-content">
     <div class="row">
-      <div class="column small-12" v-if="example.content">
-        <h2 class="c-examples-detail-content__title">Description</h2>
-      </div>
       <div class="column small-12 medium-8" v-if="example.content">
+        <h2 class="c-examples-detail-content__title">Description</h2>
         <p class="c-examples-detail-content__text">{{example.content}}</p>
+        <p v-if="example.url">
+          <a class="c-button -link" :href="example.url" target="_blank" rel="noopener noreferrer">Go to site</a>
+        </p>
       </div>
-      <div v-if="example.url" class="column small-12 medium-2 medium-offset-2 align-self-bottom">
-        <a class="c-button -link" :href="example.url" target="_blank" rel="noopener noreferrer">Go to site</a>
+      <div v-if="example.dataSources && example.dataSources.length > 0" class="column small-12 medium-4">
+          <div class="column small-12">
+              <h3 class="c-examples-detail-content__sub-title">Data Sources</h3>
+          </div>
+          <ul>
+            <li v-for="datasource in example.dataSources" class="c-examples-detail-content__list-item" :key="datasource.id"><a :href="datasource.url">{{datasource.name}}</a></li>
+          </ul>
       </div>
     </div>
     <div class="row">

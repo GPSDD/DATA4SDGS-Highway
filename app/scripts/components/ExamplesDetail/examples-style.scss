@@ -87,7 +87,20 @@
       color: $theme-accent;
       margin-top: 0;
     }
-
+    &__sub-title {
+      font-size: $font-size-normal;
+      //font-weight: 300;
+      line-height: 1.38;
+      letter-spacing: -0.5px;
+      color: $theme-accent;
+      margin-top: 10px;
+    }
+    &__list-item {
+      font-size: $font-size-normal;
+      a{
+        //text-transform: none; 
+      }
+    }
     &__text {
       font-size: $font-size-small;
       font-weight: normal;
