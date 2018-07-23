@@ -1,6 +1,7 @@
 <template src="./search-template.html" ></template >
 <style lang="scss" src="./search-style.scss" ></style >
-<script >
+<script>
+
   import router from 'router';
   import { mapGetters } from 'vuex';
   import { Tab, Tabs } from 'vue-tabs-component';

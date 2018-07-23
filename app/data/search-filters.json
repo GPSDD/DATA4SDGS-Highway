@@ -1,26 +1,6 @@
 {
   "dataSources": [
     {
-      "value": "noaa",
-      "label": "NOAA"
-    },
-    {
-      "value": "nasa",
-      "label": "NASA"
-    },
-    {
-      "value": "iucn_unep_wcmc",
-      "label": "IUCN & UNEP-WCMC"
-    },
-    {
-      "value": "cait",
-      "label": "CAIT"
-    },
-    {
-      "value": "worldbank",
-      "label": "WORLDBANK"
-    },
-    {
       "value": "PREP- Partnership for Resilience & Preparedness",
       "label": "PREP- PARTNERSHIP FOR RESILIENCE & PREPAREDNESS"
     },
@@ -51,6 +31,11 @@
     {
       "value": "United Nations Statistics Division",
       "label": "UNITED NATIONS STATISTICS DIVISION"
+    },
+    {
+      "value": "gee", 
+      "label": "GOOGLE EARTH ENGINE",
+      "provider": true
     }
   ],
   "geography": [
