@@ -60,11 +60,10 @@ const searchDatasets = {
         if (state.search.filters.dataSources && state.search.filters.dataSources.length > 0) {
           const fullFilters = state.search.filters.dataSources
                                     .map(x => filterSettings.dataSources.find(y => y.value === x));
-          console.log('fullfilters', fullFilters);
+
           const providers = fullFilters.filter(x => x.provider);
           const taxnomies = fullFilters.filter(x => !x.provider);
 
-          console.log(state.search.filters.dataSources);
           providerFilter = providers && providers.length > 0 ? `&provider=${providers.map(x => encodeURIComponent(x.value)).join(',')}` : '';
           taxnomyFilter = taxnomies && taxnomies.length > 0 ? `&vocabulary[legacy]=${taxnomies.map(x => encodeURIComponent(x.value)).join(',')}` : '';
         }

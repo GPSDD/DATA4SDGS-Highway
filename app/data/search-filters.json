@@ -33,7 +33,7 @@
       "label": "UNITED NATIONS STATISTICS DIVISION"
     },
     {
-      "value": "gee",
+      "value": "gee", 
       "label": "GOOGLE EARTH ENGINE",
       "provider": true
     }
