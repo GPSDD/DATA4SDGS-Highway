@@ -1,0 +1,105 @@
+<div> 
+    <div class="container" >
+        <div class="input-label">Application</div>
+        <div class="input" >
+          <input
+            type="text"
+            placeholder="Metadata Application"
+            class="search-input js-search-input"
+            v-model.trim="metadata.application"
+          >
+        </div > 
+    </div >            
+    <div class="container" >
+        <div class="input-label">Language</div>
+        <div class="input" >
+          <input
+            type="text"
+            placeholder="Dataset Language"
+            class="search-input js-search-input"
+            v-model.trim="metadata.language"
+          >
+        </div > 
+    </div >            
+    <div class="container" >
+        <div class="input-label">Source Organization</div>
+        <div class="input" >
+          <input
+            type="text"
+            placeholder="Source Organization"
+            class="search-input js-search-input"
+            v-model.trim="metadata.source"
+          >
+        </div > 
+    </div >            
+    <div class="container" >
+        <div class="input-label">Datasource Url</div>
+        <div class="input" >
+          <input
+            type="text"
+            placeholder="Datasource Url"
+            class="search-input js-search-input"
+            v-model.trim="metadata.sourceUrl"
+          >
+        </div > 
+    </div >            
+    <div class="container" >
+        <div class="input-label">Datasource Endpoint</div>
+        <div class="input" >
+          <input
+            type="text"
+            placeholder="Datasource Endpoint"
+            class="search-input js-search-input"
+            v-model.trim="metadata.sourceEndpoint"
+          >
+        </div > 
+    </div >            
+    <div class="container" >
+        <div class="input-label">Download Url</div>
+        <div class="input" >
+          <input
+            type="text"
+            placeholder="Download Url"
+            class="search-input js-search-input"
+            v-model.trim="metadata.downloadUrl"
+          >
+        </div > 
+    </div >            
+    <div class="container" >
+        <div class="input-label">License</div>
+        <div class="input" >
+          <input
+            type="text"
+            placeholder="License"
+            class="search-input js-search-input"
+            v-model.trim="metadata.license"
+          >
+        </div > 
+    </div >            
+    <div class="container" >
+        <div class="input-label">Info</div>
+        <div class="input" >
+          <input
+            type="text"
+            placeholder="Any additional Info"
+            class="search-input js-search-input"
+            v-model.trim="metadata.info"
+          >
+        </div > 
+    </div >            
+    <div class="container" >
+        <div class="input-label">Units</div>
+        <div class="input" >
+          <input
+            type="text"
+            placeholder="Dataset Units"
+            class="search-input js-search-input"
+            v-model.trim="metadata.units"
+          >
+        </div > 
+    </div >            
+    <div class="c-add-form__actions">
+      <button-component class="-bordered -big -dark" :click="goToPlayground" >Cancel</button-component >
+      <button-component class="-bordered -big -white -filled" :click="nextTab" >Next</button-component >      
+    </div>    
+</div>

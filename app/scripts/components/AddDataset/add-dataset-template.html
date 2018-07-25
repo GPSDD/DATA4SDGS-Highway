@@ -1,0 +1,25 @@
+<div class="c-subpage">
+  <sub-page-hero-component header="Upload Dataset" back-link-text="API Highways Dataset" back-link-url="/data-sets"></sub-page-hero-component>
+  <div class="c-subpage-content">
+    <div class="row">
+      <div class="column small-12 medium-10 medium-offset-1">
+        <div class="c-add-form">
+          <div class="c-add-form__tabs">
+            <div class="c-add-form__tabs-item" v-for="tab in tabs" :class="{'active': tab.active}" @click.stop="setActiveTab(tab)">
+              {{tab.name}}
+            </div>
+          </div>
+          <div class="c-add-form__tab-content" :class="{'active': tabs[0].active}"> 
+            <dataset-form-component></dataset-form-component>
+          </div>
+          <div class="c-add-form__tab-content" :class="{'active': tabs[1].active}"> 
+            <metadata-form-component></metadata-form-component>
+          </div>
+          <div class="c-add-form__tab-content" :class="{'active': tabs[2].active}"> 
+              <tag-form-component></tag-form-component>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

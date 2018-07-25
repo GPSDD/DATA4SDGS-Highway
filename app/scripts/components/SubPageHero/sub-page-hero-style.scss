@@ -1,0 +1,73 @@
+// Import global variables
+@import '../../../styles/variables';
+
+.c-subpage-hero {
+  background-color: $theme-accent;
+  padding: $medium-margin 0 $small-margin;
+
+  &__metadata {
+    align-items: center;
+    display: flex;
+    > a,
+    > span,
+    > button {
+      display: flex;
+      align-items: center;
+      line-height: 1.63;
+      font-size: $font-size-small;
+      margin-right: $small-margin;
+      color: $theme-base;
+      text-transform: none;
+      font-weight: normal;
+
+      &:last-child {
+        margin-right: 0;
+      }
+    }
+
+    &:last-child {
+      justify-content: flex-end;
+    }
+  }
+
+  &__title {
+    margin: $medium-margin 0 $small-margin;
+    text-align: left;
+    color: $theme-base;
+  }
+
+  .c-icon {
+    display: inline-block;
+    fill: $theme-base;
+    margin-right: 10px;
+  }
+
+  .breadcrumb {
+    font-size: $font-size-small;
+    font-weight: normal;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: 1.5;
+    letter-spacing: 1px;
+    padding-left: 10px;
+    position: relative;
+
+    &:before {
+      content: "";
+      position: relative;
+      left: -7px;
+      top: -2px;
+      border: solid $link-font-color;
+      border-width: 0 2px 2px 0;
+      display: inline-block;
+      padding: 3px;
+      transform: rotate(135deg);
+    }
+  }
+  .separator {
+    background-color: rgba($theme-base, 0.52);
+    width: 1px;
+    height: 32px;
+  }
+  
+}

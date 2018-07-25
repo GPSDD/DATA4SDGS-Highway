@@ -1,0 +1,20 @@
+<div> 
+    <div class="input-label">Tags</div>
+    <div class="container" v-for="tag in tags" :key="tag">
+        <div class="input" >
+          <input
+            type="text"
+            placeholder="Enter Tag"
+            class="search-input js-search-input"
+            v-model.trim="tag.value"
+          >
+        </div > 
+    </div >            
+    <div class="c-add-form__actions left-align">
+        <button-component class="-bordered -big -white -filled" :click="addTag" >Add Tag</button-component >      
+      </div>    
+      <div class="c-add-form__actions">
+      <button-component class="-bordered -big -dark" :click="goToPlayground" >Cancel</button-component >
+      <button-component class="-bordered -big -white -filled" :click="nextTab" >Save</button-component >      
+    </div>    
+</div>

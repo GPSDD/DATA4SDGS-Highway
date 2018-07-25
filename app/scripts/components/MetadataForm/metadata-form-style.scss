@@ -1,0 +1,105 @@
+// Import global variables
+@import '../../../styles/variables';
+
+$checkbox-color: #aea6a6;
+
+.c-add-form {
+  &__tab-content{
+    padding: rem(60);
+    display: none;
+    &.active{
+      opacity: 1;
+      display: block;
+    }
+  }
+  .input {
+    position: relative;
+    //height: 60px;
+
+    .search-input {
+      width: 100%;
+      height: 60px;
+      position: relative;
+      padding: 0 $medium-margin;
+      padding-right: 80px;
+      border-radius: 2px 2px 0 0;
+      border: 0;
+      outline: none;
+      font-size: rem(16);
+      border: solid 1px rgba(69, 69, 69, 0.5);
+      display: table;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    textarea {
+      &.search-input{
+        padding: rem(20) 32px !important;
+      }
+    }
+  .search-icon {
+      position: absolute;
+      width: 25px;
+      height: 25px;
+      fill: $gold-yellow;
+      right: 25px;
+      top: 50%;
+      transform: translateY(-50%);
+
+      &.-inverted {
+        transform: translateY(-50%) rotate(180deg)
+      }
+    }
+    &-label{
+      font-weight: bold;
+      font-size: rem(14);
+      color: $black;
+    }
+    &-option{
+      display: block;
+      font-size: rem(16);
+      padding: rem(6) $medium-margin;
+      &:hover{
+        background-color: $subtle-grey;
+        cursor: pointer;
+      }
+    }
+    &-required{
+      position: absolute;
+      right: -20px;
+      top: 50%;
+      font-size: rem(30);
+      color: $lighter-grey;
+    }
+  }
+
+
+
+  @media (max-width: 639px) {
+    margin-top: $small-margin;
+  }
+
+
+  .c-tabs {
+    position: absolute;
+    background: $white;
+    left: 0;
+    right: 0;
+    top: 60px;
+    border: solid 1px rgba(69, 69, 69, 0.5);
+    padding: $medium-margin 0;
+    border-top: 0;
+    font-size: 1rem;
+    z-index: 100;
+  }
+
+  &__show-advanced{
+    color: $theme-blue;
+    cursor: pointer;
+    display: block;
+    font-size: rem(14);
+    margin-bottom: rem(20);
+  }
+
+}
+

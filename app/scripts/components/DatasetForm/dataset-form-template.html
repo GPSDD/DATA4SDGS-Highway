@@ -1,0 +1,138 @@
+<div> 
+    <div class="container" v-click-outside="onClickOutside" >
+        <div class="input-label">Type</div>
+        <div class="input" >
+          <input
+            type="text"
+            placeholder="Select Dataset Type"
+            class="search-input js-search-input"
+            v-model.trim="dataset.provider"
+            ref="search-input"
+            v-on:click="isOpen = true"
+            required
+          >
+          <icon-component :class="['search-icon', '-round', '-xsmall', { '-inverted': isOpen }]"
+                          name="icon-chevron-down" ></icon-component >
+        </div > <span class="input-required">*</span>
+        <div v-if="isOpen" class="c-tabs" >
+          <span class="input-option" v-for="providerItem in providers" @click="setProvider(providerItem)">{{providerItem}}</span>
+        </div >
+    </div >            
+    <div class="container" >
+        <div class="input-label">Name</div>
+        <div class="input" >
+          <input
+            type="text"
+            placeholder="Dataset Name"
+            class="search-input js-search-input"
+            v-model.trim="dataset.name"
+            required
+          >
+        </div > 
+        <span class="input-required">*</span>
+    </div >            
+    <div class="container" >
+        <div class="input-label">Connector URL</div>
+        <div class="input" >
+          <input
+            type="text"
+            placeholder="Dataset Connector Url"
+            class="search-input js-search-input"
+            v-model.trim="dataset.connectorUrl"
+            required
+          >
+        </div > 
+        <span class="input-required">*</span>
+    </div >            
+    <div class="container" >
+        <div class="input-label">Application</div>
+        <div class="input" >
+          <input
+            type="text"
+            placeholder="Dataset Application"
+            class="search-input js-search-input"
+            v-model.trim="dataset.application"
+            required
+          >
+        </div > 
+        <span class="input-required">*</span>
+    </div >   
+    <span class="c-add-form__show-advanced" @click="toggleAdvanced">Show Advanced</span>         
+    <div class="advanced-options" v-if="showAdvanced">
+      <div class="container" v-if="showJsonDataFields">
+          <div class="input-label">Data Path</div>
+          <div class="input" >
+            <input
+              type="text"
+              placeholder="Dataset Data Path"
+              class="search-input js-search-input"
+              v-model.trim="dataset.dataPath"
+            >
+          </div > 
+      </div >            
+      <div class="container" v-if="showJsonDataFields">
+          <div class="input-label">Data</div>
+          <div class="input" >
+            <textarea
+              type="multiline"
+              placeholder="Dataset Data"
+              class="search-input js-search-input"
+              v-model.trim="dataset.jsonData"
+            ></textarea>                    
+          </div > 
+      </div >            
+      <div class="container" v-if="showJsonDataFields">
+          <div class="input-label">Data Attributes</div>
+          <div class="input" >
+            <textarea
+              type="multiline"
+              placeholder="Dataset Data"
+              class="search-input js-search-input"
+              v-model.trim="dataset.dataAttributes"
+            ></textarea>                    
+          </div > 
+      </div >            
+      <div class="container" v-click-outside="onOverwriteClickOutside" >
+          <div class="input-label">Overwrite</div>
+          <div class="input" >
+            <input
+              type="text"
+              placeholder="Overwrite Dataset"
+              class="search-input js-search-input"
+              v-model.trim="dataset.overwrite"
+              ref="search-input"
+              v-on:click="overwriteIsOpen = true"
+            >
+            <icon-component :class="['search-icon', '-round', '-xsmall', { '-inverted': isOpen }]"
+                            name="icon-chevron-down" ></icon-component >
+          </div >
+          <div v-if="overwriteIsOpen" class="c-tabs" >
+            <span class="input-option" @click="overwrite = 'Yes'">Yes</span>
+            <span class="input-option" @click="overwrite = 'No'">No</span>
+          </div >
+      </div >            
+      <div class="container" v-click-outside="onSandboxClickOutside" >
+          <div class="input-label">Sandbox</div>
+          <div class="input" >
+            <input
+              type="text"
+              placeholder="Is Sandbox Dataset"
+              class="search-input js-search-input"
+              v-model.trim="dataset.sandbox"
+              ref="search-input"
+              v-on:click="sandboxIsOpen = true"                          
+            >
+            <icon-component :class="['search-icon', '-round', '-xsmall', { '-inverted': sandboxIsOpen }]"
+                            name="icon-chevron-down" ></icon-component >
+          </div >                       
+          <div v-if="sandboxIsOpen" class="c-tabs" >
+            <span class="input-option" @click="sandbox = 'Yes'">Yes</span>
+            <span class="input-option" @click="sandbox = 'No'">No</span>
+          </div >
+      </div >            
+    </div>
+    <div class="c-add-form__actions">
+      <button-component class="-bordered -big -dark" :click="goToPlayground" >Cancel</button-component >
+      <button-component class="-bordered -big -white -filled" :click="nextTab" >Next</button-component >      
+    </div>    
+</div>
