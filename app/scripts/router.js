@@ -4,6 +4,7 @@ import VueRouter from 'vue-router';
 import HomeComponent from 'components/Home';
 import PlaygroundDetailComponent from 'components/PlaygroundDetail';
 import PlaygroundComponent from 'components/Playground';
+import AddDatasetComponent from 'components/AddDataset';
 import PartnerComponent from 'components/PartnerApis';
 import HeaderComponent from 'components/Header';
 import FooterComponent from 'components/Footer';
@@ -31,6 +32,14 @@ const routes = [
     components: {
       default: PlaygroundComponent,
       HeroComponent,
+      HeaderComponent,
+      FooterComponent,
+    },
+  },
+  {
+    path: '/add-data-set',
+    components: {
+      default: AddDatasetComponent,
       HeaderComponent,
       FooterComponent,
     },

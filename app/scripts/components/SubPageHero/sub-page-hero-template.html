@@ -1,0 +1,27 @@
+<div class="c-subpage-hero">
+  <div class="row">
+    <div class="column small-12">
+      <router-link class="breadcrumb" active-class="-active" :to="backUrl" exact>
+        {{backText}}
+      </router-link>
+    </div>
+    <div class="column small-12">
+      <h1 class="c-subpage-hero__title">{{heading}}</h1>
+    </div>
+    <!-- <div class="column small-12 medium-6 c-subpage-hero__metadata">
+      <span v-if="example.author">Author: {{example.author}}</span>
+      <span v-if="example.date">Date published: {{example.date}}</span>
+    </div> -->
+    <!-- <div class="column small-12 medium-6 c-subpage-hero__metadata">
+      <a v-if="example.sourceCode" :href="example.sourceCode" target="_blank" rel="noopener nofollower">
+        <icon-component name="icon-github" class="-small"></icon-component>
+        See source code
+      </a>
+      <span v-if="example.sourceCode" class="separator"></span>
+      <button @click="openShare">
+        <icon-component name="icon-share" class="-small"></icon-component>
+        Share
+      </button>
+    </div> -->
+  </div>
+</div>

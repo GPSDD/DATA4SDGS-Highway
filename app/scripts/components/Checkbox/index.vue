@@ -2,7 +2,7 @@
 
 <style lang="scss" src="./checkbox-style.scss" ></style >
 
-<script >
+<script>
   import { mapGetters } from 'vuex';
   import IconComponent from 'components/Icon';
 
