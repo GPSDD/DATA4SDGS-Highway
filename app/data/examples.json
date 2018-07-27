@@ -71,14 +71,14 @@
     ]
   },
   {
-      "id": "resource-watch-vs-world-bank-visualization",
-      "title": "Resource Watch vs World Bank Visualization",
+      "id": "resource-projects-vs-world-bank-visualization",
+      "title": "Resource Projects vs World Bank Visualization",
       "url": "https://gpsdd.github.io/Resource-Projects-Visualizations/",
       "author": "GPSDD",
       "date": "July 9, 2018",
       "sourceCode": "https://github.com/GPSDD/Resource-Projects-Visualizations",
       "intro": "Visualization showing data comparisons of the Resource Projects data with World Bank Data.",
-      "content": "Mineral Rents vs Resource Payments view for countries across the globe. Visualisation built using D3.js and vue.js",
+      "content": "Mineral Rents vs Resource Projects view for countries across the globe. Visualisation built using D3.js and vue.js",
       "dataSources":[{
         "name":"  Mineral Rents (% of GDP) ",
         "id":"013dca35-6f89-48da-8865-2d43dc6c441c",
@@ -90,7 +90,7 @@
         "url":"https://www.apihighways.org/data-sets/21c1039e-8fc6-4aae-8ebb-77c580c63057",
         "originUrl":"https://resourceprojects.org/" 
       }],
-      "thumb": "/static/examples/resource-watch-vs-world-bank-visualization.png",
+      "thumb": "/static/examples/resource-payments-vs-world-bank-visualization.png",
       "html": "<iframe src='https://gpsdd.github.io/Resource-Projects-Visualizations/' width='100%' height='600px' frameborder='0'></iframe>"
   }
 ]
