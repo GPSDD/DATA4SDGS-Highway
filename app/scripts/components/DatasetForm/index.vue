@@ -89,9 +89,9 @@ export default {
         if (!isValid) {
           return;
         }
-        const datasetWithEmptyRemoved = this.removeEmptyKeys(this.dataset);
+        let datasetWithEmptyRemoved = this.removeEmptyKeys(this.dataset);
+        datasetWithEmptyRemoved = this.setDatasetType(datasetWithEmptyRemoved);
         API.post('dataset', datasetWithEmptyRemoved, this.token).then((result) => {
-          console.log(result);
           this.setDatasetId(result.data);
           this.nextTab();
         }).catch((error) => {
@@ -99,7 +99,21 @@ export default {
         });
       });
     },
-
+    // Sets the connectorType based on the provider.
+    // csv, tsv, xml, json = document
+    // rest of them = rest
+    // update when more providers are added
+    setDatasetType(dataset) {
+      switch (dataset.provider) {
+        case 'generic':
+          dataset.connectorType = 'rest';
+          break;
+        default:
+          dataset.connectorType = 'document';
+          break;
+      }
+      return dataset;
+    }
   },
   watch: {},
   components: {

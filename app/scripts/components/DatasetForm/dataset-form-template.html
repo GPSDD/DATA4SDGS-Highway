@@ -2,7 +2,8 @@
     <ul class="error-list" v-if="$validator.errors.items.length > 0">
       <li v-for="item in $validator.errors.items" :key="item.id">{{item.msg}}</li>
     </ul>
-    <div class="container" v-click-outside="onTypeClickOutside" >
+    <!-- This is automatically determined on the provider setting. -->
+    <!-- <div class="container" v-click-outside="onTypeClickOutside" >
         <div class="input-label">Type</div>
         <div class="input" >
           <input
@@ -23,7 +24,7 @@
         <div v-if="isTypeOpen" class="c-tabs" >
           <span class="input-option" v-for="typeItem in types" @click="setType(typeItem)">{{typeItem}}</span>
         </div >
-    </div >            
+    </div >             -->
     <div class="container" v-click-outside="onClickOutside" >
         <div class="input-label">Provider</div>
         <div class="input" >
