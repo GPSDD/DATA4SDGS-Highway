@@ -211,7 +211,7 @@
         e.preventDefault();
         if (e.target.href) {
           ga('send', 'event', 'Data Source URL clicked', `${this.selectedDataset.name} - dataset type ${this.selectedDataset.provider}`, 'Click');
-          window.open(e.target.href,'_blank');
+          window.open(e.target.href, '_blank');
         }
       },
       openDocs() {
