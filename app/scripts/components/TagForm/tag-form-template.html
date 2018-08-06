@@ -1,16 +1,4 @@
-<form ref="form" @submit.prevent="saveTags()">  
-    <div class="input-label">Vocabulary</div>
-    <div class="container" >
-        <div class="input" >
-          <input
-            type="text"
-            placeholder="Enter Vocabulary e.g. country or science"
-            class="search-input js-search-input"
-            v-model.trim="vocabulary"
-            v-validate="'required'"
-          >
-        </div > 
-    </div >            
+<form ref="form" @submit.prevent="saveTags()" v-click-outside="closeTags">  
     <div class="input-label">Tags</div>
     <div class="container" v-for="tag in tags" >
         <div class="input" >
@@ -19,8 +7,15 @@
             placeholder="Enter Tag"
             class="search-input js-search-input"
             v-model.trim="tag.value"
+            @click="openTag(tag)"
+            @keyup="filterTags(tag)"
           >
         </div > 
+        <div v-if="tag.filterTags.length > 0 && tag.isOpen" class="c-tabs" >
+          <ul class="c-autocomplete-options">
+            <li v-for="existingTag in tag.filterTags.slice(0,8)" @click="setTag(tag,existingTag)">{{existingTag}}</li>
+          </ul>
+        </div >    
     </div >            
     <div class="c-add-form__actions left-align">
         <button-component class="-bordered -big -white -filled" :click="addTag" >Add Tag</button-component >      
