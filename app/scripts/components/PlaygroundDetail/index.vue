@@ -210,7 +210,8 @@
       recordDataSourceClick(e) {
         e.preventDefault();
         if (e.target.href) {
-          console.log('link clicked');
+          ga('send', 'event', 'Data Source URL clicked', `${this.selectedDataset.name} - dataset type ${this.selectedDataset.provider}`, 'Click');
+          window.href = e.target.href;
         }
       },
       openDocs() {
