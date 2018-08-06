@@ -24,6 +24,19 @@ class API {
     const url = `${this.baseURL}/${version}/${endpoint}${params ? `?${params}` : ''}`;
     return fetch(url, this.config).then(handleResponse);
   }
+  post(endpoint, body, token) {
+    console.log(body);
+    const url = `${this.baseURL}/${version}/${endpoint}`;
+    return fetch(url, {
+      method: 'POST',
+      headers: {
+        Authorization: `Bearer ${token}`,
+        client: 'front',
+        'Content-Type': 'application/json; charset=utf-8'
+      },
+      body: JSON.stringify(body)
+    }).then(handleResponse);
+  }
 }
 
 const config = {

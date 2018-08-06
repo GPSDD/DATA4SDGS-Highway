@@ -2,7 +2,7 @@
 <style lang="scss" src="./add-dataset-style.scss"></style>
 <script>
 import router from 'router';
-import { mapGetters } from 'vuex';
+import { mapGetters, mapMutations } from 'vuex';
 import SpinnerComponent from 'components/Spinner';
 import ButtonComponent from 'components/Button';
 import SubPageHeroComponent from 'components/SubPageHero';
@@ -11,10 +11,14 @@ import MetadataFormComponent from 'components/MetadataForm';
 import TagFormComponent from 'components/TagForm';
 import vClickOutside from 'v-click-outside';
 import IconComponent from 'components/Icon';
+import {
+  SET_TOKEN
+} from '../../store/mutation-types';
 
 export default {
   name: 'add-dataset-component',
-  created() {
+  async created() {
+    await this.$store.dispatch('setToken');
   },
   directives: {
     clickOutside: vClickOutside.directive
@@ -23,8 +27,12 @@ export default {
     return {
       tabs: [
         {
-          name: 'Dataset',
+          name: 'Token',
           active: true
+        },
+        {
+          name: 'Dataset',
+          active: false
         },
         {
           name: 'Metadata',
@@ -35,16 +43,21 @@ export default {
           active: false
         },
       ],
+      modelToken: ''
     };
   },
   computed: {
     ...mapGetters({
+      token: 'getToken'
     }),
     showJsonDataFields() {
       return this.provider === 'json' && this.connectorUrl.length === 0;
     }
   },
   methods: {
+    ...mapMutations({
+      setToken: SET_TOKEN
+    }),
     setActiveTab(tab) {
       this.deactivateTabs();
       tab.active = true;
@@ -52,29 +65,21 @@ export default {
     deactivateTabs() {
       this.tabs.forEach((x) => { x.active = false; });
     },
-    nextTab() {
-      const index = this.tabs.findIndex(x => x.active);
-      this.deactivateTabs();
-      switch (index) {
-        case 0:
-          this.saveDataset();
-          break;
-        case 1:
-          this.saveMetadata();
-          break;
-        default:
-          this.saveTags();
-          break;
-      }
+    goToPlayground() {
+      ga('send', 'event', 'Add Data Set', 'Click Cancel', 'Click');
+      this.$router.push('/data-sets');
     },
-    saveMetadata() {
-      console.log('saved metadata');
-      this.tabs[2].active = true;
-    },
-    saveTags() {
-      console.log('saved tags');
-    }
 
+    nextTab() {
+      let index = this.tabs.findIndex(x => x.active);
+      this.deactivateTabs();
+      index += 1;
+      this.tabs[index].active = true;
+    },
+    saveToken() {
+      this.setToken({ token: this.modelToken });
+      this.nextTab();
+    }
   },
   watch: {},
   components: {

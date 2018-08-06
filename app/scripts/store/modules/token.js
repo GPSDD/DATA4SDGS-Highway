@@ -36,6 +36,11 @@ const token = {
       });
     },
   },
+  getters: {
+    getToken(state) {
+      return state.token;
+    },
+  }
 };
 
 export default token;

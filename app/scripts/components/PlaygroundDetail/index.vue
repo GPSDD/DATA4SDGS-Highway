@@ -1,6 +1,6 @@
 <template src="./playground-detail-template.html" ></template >
 <style lang="scss" src="./playground-detail-style.scss" ></style >
-<script >
+<script>
   import store from 'store';
   import { mapGetters } from 'vuex';
   import findLast from 'lodash/findLast';
@@ -202,7 +202,19 @@
         const el = document.querySelector(selector);
         if (el) el.scrollIntoView();
       },
+      recordDownload(e, type) {
+        e.preventDefault();
+        ga('send', 'event', `Download Dataset in ${type} format`, `${this.selectedDataset.name} - dataset type ${this.selectedDataset.provider}`, 'Click');
+        window.location = e.target.href;
+      },
+      recordDataSourceClick(e) {
+        e.preventDefault();
+        if (e.target.href) {
+          console.log('link clicked');
+        }
+      },
       openDocs() {
+        ga('send', 'event', 'Open docs click event', `${this.selectedDataset.name} - dataset type ${this.selectedDataset.provider}`, 'Click');
         switch (this.selectedDataset.provider) {
           case 'worldbank':
             window.open('https://datahelpdesk.worldbank.org/knowledgebase/topics/125589-developer-information', '_blank');

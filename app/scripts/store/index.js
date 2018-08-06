@@ -4,6 +4,7 @@ import Vuex from 'vuex';
 import searchDatasets from './modules/search_datasets';
 import featuredDatasets from './modules/featured_datasets';
 import selectedDataset from './modules/selected_dataset';
+import datasetForm from './modules/dataset_form';
 import modal from './modules/modal';
 import token from './modules/token';
 import twitterSlides from './modules/twitter_slides';
@@ -20,6 +21,7 @@ export default new Vuex.Store({
     modal,
     token,
     twitterSlides,
+    datasetForm
   },
   strict: debug,
 });

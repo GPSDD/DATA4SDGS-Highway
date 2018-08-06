@@ -5,18 +5,22 @@ import router from 'router';
 import { mapGetters } from 'vuex';
 import ButtonComponent from 'components/Button';
 import IconComponent from 'components/Icon';
+import JsonMixin from 'mixins/json-helper.mixin';
+import API from 'services/ApiManager';
 
 export default {
   name: 'tag-form-component',
-  created() {
-  },
   data() {
     return {
-      tags: [{ value: '' }]
+      vocabulary: '',
+      tags: [{ value: '' }],
     };
   },
+  mixins: [JsonMixin],
   computed: {
     ...mapGetters({
+      datasetId: 'getDatasetId',
+      token: 'getToken'
     })
   },
   methods: {
@@ -28,8 +32,28 @@ export default {
     addTag() {
       this.tags.push({ value: '' });
     },
-    nextTab() {
-      console.log('saved tag');
+    saveTags() {
+      this.$validator.validate().then((isValid) => {
+        if (!isValid) {
+          window.scrollTo(0, 0);
+          return;
+        }
+        const tagsWithEmptyRemoved = this.removeEmptyArrayItems(this.tags);
+        // old vocab tags
+        API.post(`dataset/${this.datasetId}/vocabulary/${this.vocabulary}`, { tags: tagsWithEmptyRemoved }, this.token).then(() => {
+          // graph tags
+          API.post(`dataset/${this.datasetId}/vocabulary/knowledge_graph`, { tags: tagsWithEmptyRemoved }, this.token).then(() => {
+            // send email
+            this.$router.push(`/data-sets/${this.datasetId}`);
+          }).catch((error) => {
+            console.error(error);
+          });
+
+          this.$router.push(`/data-sets/${this.datasetId}`);
+        }).catch((error) => {
+          console.error(error);
+        });
+      });
     }
   },
   watch: {},

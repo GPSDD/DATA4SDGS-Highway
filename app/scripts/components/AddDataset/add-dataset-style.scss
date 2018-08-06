@@ -10,6 +10,9 @@ $checkbox-color: #aea6a6;
   margin-bottom: rem(40);
   margin-top: -24px;
 
+  .error-list {
+    color: $error-red;
+  }
   .container {
     position: relative;
     margin-bottom: rem(20);
@@ -62,9 +65,11 @@ $checkbox-color: #aea6a6;
       overflow: hidden;
       text-overflow: ellipsis;
     }
-    textarea {
+    textarea {      
       &.search-input{
         padding: rem(20) 32px !important;
+        white-space: initial;
+        height: 140px;
       }
     }
   .search-icon {

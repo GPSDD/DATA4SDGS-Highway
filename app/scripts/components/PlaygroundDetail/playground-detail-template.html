@@ -53,10 +53,10 @@
           </span>
           <ul class="sidebar-links">
             <li v-if="metadata && metadata.dataDownloadUrl.csv" >
-              <a :href="metadata.dataDownloadUrl.csv" target="_blank">.csv</a>
+              <a :href="metadata.dataDownloadUrl.csv" @click="recordDownload($event,'.csv')" target="_blank">.csv</a>
             </li>
             <li v-if="metadata && metadata.dataDownloadUrl.json" >
-              <a :href="metadata.dataDownloadUrl.json" target="_blank">.json</a>
+              <a :href="metadata.dataDownloadUrl.json" @click="recordDownload($event,'.json')" target="_blank">.json</a>
             </li>
           </ul>
         </div>
@@ -156,7 +156,7 @@
                     </div>
                   </v-popover>
                 </div>
-                <p class="detail-value" v-html="detail.value"></p>
+                <p @click="recordDataSourceClick" class="detail-value" v-html="detail.value"></p>
               </div>
             </div>
           </div>

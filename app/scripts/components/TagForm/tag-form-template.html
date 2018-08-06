@@ -1,4 +1,16 @@
-<div> 
+<form ref="form" @submit.prevent="saveTags()">  
+    <div class="input-label">Vocabulary</div>
+    <div class="container" >
+        <div class="input" >
+          <input
+            type="text"
+            placeholder="Enter Vocabulary e.g. country or science"
+            class="search-input js-search-input"
+            v-model.trim="vocabulary"
+            v-validate="'required'"
+          >
+        </div > 
+    </div >            
     <div class="input-label">Tags</div>
     <div class="container" v-for="tag in tags" >
         <div class="input" >
@@ -15,6 +27,6 @@
       </div>    
       <div class="c-add-form__actions">
       <button-component class="-bordered -big -dark" :click="goToPlayground" >Cancel</button-component >
-      <button-component class="-bordered -big -white -filled" :click="nextTab" >Save</button-component >      
+      <button class="c-button -bordered -big -white -filled">Save</button>
     </div>    
-</div>
+  </form>

@@ -28,6 +28,8 @@ export const ADD_RECENT_DATASETS = 'datasets/ADD_RECENT_DATASETS';
  */
 export const SET_RELATED_DATASETS = 'datasets/SET_RELATED_DATASETS';
 
+export const SET_DATASET_FORM_ID = 'dataset/SET_DATASET_FORM_ID';
+
 /**
  * Modal - Console Modal
  */

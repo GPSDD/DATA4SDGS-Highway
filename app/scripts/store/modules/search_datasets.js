@@ -78,6 +78,7 @@ const searchDatasets = {
 
         // Using XMLHttpRequest to be able to cancel request
         const url = `${BASE_URL}/v1/dataset?published=true&includes=metadata&page[size]=100${search}${tags}${taxnomyFilter}${providerFilter}`;
+        ga('send', 'event', 'Search Executed', url);
         if (xhr) {
           xhr.abort();
         }
