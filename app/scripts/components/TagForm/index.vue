@@ -13,7 +13,7 @@ export default {
   name: 'tag-form-component',
   data() {
     return {
-      tags: [{ value: '', isOpen: false, filterTags: [] }],
+      tags: [{ value: '', isOpen: false, filterTags: [], selected: false }],
       existingTags: [],
     };
   },
@@ -39,7 +39,7 @@ export default {
       this.$router.push('/data-sets');
     },
     addTag() {
-      this.tags.push({ value: '', isOpen: false, filterTags: [] });
+      this.tags.push({ value: '', isOpen: false, filterTags: [], selected: false });
     },
     filterTags(tag) {
       tag.filterTags = this.existingTags.filter(x =>
@@ -53,7 +53,7 @@ export default {
       tag.isOpen = false;
     },
     closeTags() {
-      this.tags.forEach((tag) => { tag.open = false; });
+      this.tags.forEach((tag) => { tag.isOpen = false; });
     },
     saveTags() {
       this.$validator.validate().then((isValid) => {
