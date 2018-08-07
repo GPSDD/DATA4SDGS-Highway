@@ -53,7 +53,6 @@ export default {
       tag.isOpen = false;
     },
     closeTags() {
-      console.log('closeeee');
       this.tags.forEach((tag) => { tag.isOpen = false; });
     },
     saveTags() {
