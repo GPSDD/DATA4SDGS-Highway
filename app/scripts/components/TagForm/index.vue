@@ -15,6 +15,7 @@ export default {
     return {
       tags: [{ value: '', isOpen: false, filterTags: [], selected: false }],
       existingTags: [],
+      showResponseError: false,
     };
   },
   directives: {
@@ -56,6 +57,7 @@ export default {
       this.tags.forEach((tag) => { tag.isOpen = false; });
     },
     saveTags() {
+      this.showResponseError = false;
       this.$validator.validate().then((isValid) => {
         if (!isValid) {
           window.scrollTo(0, 0);
@@ -69,11 +71,12 @@ export default {
             // send email
             this.$router.push(`/data-sets/${this.datasetId}`);
           }).catch((error) => {
+            this.showResponseError = true;
             console.error(error);
           });
-
           this.$router.push(`/data-sets/${this.datasetId}`);
         }).catch((error) => {
+          this.showResponseError = true;
           console.error(error);
         });
       });

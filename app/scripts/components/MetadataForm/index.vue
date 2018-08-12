@@ -32,6 +32,7 @@ export default {
         dataDownloadUrl: '',
         dataSourceEndpoint: '',
         license: '',
+        showResponseError: false,
         info: '',
         units: ''
       }
@@ -50,6 +51,7 @@ export default {
       this.$router.push('/data-sets');
     },
     saveMetadata() {
+      this.showResponseError = false;
       console.log('dataset id', this.datasetId);
       this.$validator.validate().then((isValid) => {
         if (!isValid) {
@@ -57,10 +59,10 @@ export default {
           return;
         }
         const metadataWithEmptyRemoved = this.removeEmptyKeys(this.metadata);
-        API.post(`dataset/${this.datasetId}/metadata`, metadataWithEmptyRemoved, this.token).then((result) => {
-          console.log(result);
+        API.post(`dataset/${this.datasetId}/metadata`, metadataWithEmptyRemoved, this.token).then(() => {
           this.nextTab();
         }).catch((error) => {
+          this.showResponseError = true;
           console.error(error);
         });
       });
