@@ -2,6 +2,9 @@
     <ul class="error-list" v-if="$validator.errors.items.length > 0">
       <li v-for="item in $validator.errors.items" :key="item.id">{{item.msg}}</li>
     </ul>
+    <div class="error-list" v-if="showResponseError">
+      <p>We're sorry, there was a problem sending your request.</p>
+    </div>
     <!-- This is automatically determined on the provider setting. -->
     <!-- <div class="container" v-click-outside="onTypeClickOutside" >
         <div class="input-label">Type</div>
@@ -32,7 +35,7 @@
             type="text"
             placeholder="Select Dataset Provider"
             class="search-input js-search-input"
-            v-model.trim="dataset.provider"
+            v-model.trim="dataset.provider.name"
             ref="search-input"
             v-on:click="isOpen = true"            
             name="dataset provider"
@@ -43,7 +46,7 @@
                           name="icon-chevron-down" ></icon-component >
         </div > <span class="input-required">*</span>
         <div v-if="isOpen" class="c-tabs" >
-          <span class="input-option" v-for="providerItem in providers" @click="setProvider(providerItem)">{{providerItem}}</span>
+          <span class="input-option" v-for="providerItem in providers" @click="setProvider(providerItem)">{{providerItem.name}}</span>
         </div >
     </div >            
     <div class="container" >

@@ -1,4 +1,8 @@
 <form ref="form" @submit.prevent="saveTags()" v-click-outside="closeTags">  
+    <div class="error-list" v-if="showResponseError">
+      <p>We're sorry, there was a problem sending your request.</p>
+    </div>
+  
     <div class="input-label">Tags</div>
     <div class="container" v-for="tag in tags" >
         <div class="input" >

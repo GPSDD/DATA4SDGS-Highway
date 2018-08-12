@@ -2,7 +2,10 @@
     <ul class="error-list" v-if="$validator.errors.items.length > 0">
       <li v-for="item in $validator.errors.items" :key="item.id">{{item.msg}}</li>
     </ul>
-    <!-- Using default 'en' for now -->
+    <div class="error-list" v-if="showResponseError">
+      <p>We're sorry, there was a problem sending your request.</p>
+    </div>
+      <!-- Using default 'en' for now -->
     <!-- <div class="container" >
         <div class="input-label">Language</div>
         <div class="input" >

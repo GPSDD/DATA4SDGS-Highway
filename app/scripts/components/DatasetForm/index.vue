@@ -31,9 +31,10 @@ export default {
       isOpen: false,
       isTypeOpen: false,
       sandboxIsOpen: false,
-      providers: ['csv', 'tsv', 'xml', 'json', 'generic'],
+      providers: [{ name: 'csv', value: 'csv' }, { name: 'tsv', value: 'tsv' }, { name: 'xml', value: 'xml' }, { name: 'json', value: 'json' }, { name: 'generic', value: 'genericindex' }],
       types: ['rest', 'document', 'wms'],
       showAdvanced: false,
+      showResponseError: false,
       dataset: {
         connectorType: '',
         provider: '',
@@ -85,16 +86,19 @@ export default {
       this.$router.push('/data-sets');
     },
     saveDataset() {
+      this.showResponseError = false;
       this.$validator.validate().then((isValid) => {
         if (!isValid) {
           return;
         }
         let datasetWithEmptyRemoved = this.removeEmptyKeys(this.dataset);
+        datasetWithEmptyRemoved.provider = this.dataset.provider.value;
         datasetWithEmptyRemoved = this.setDatasetType(datasetWithEmptyRemoved);
         API.post('dataset', datasetWithEmptyRemoved, this.token).then((result) => {
           this.setDatasetId(result.data);
           this.nextTab();
         }).catch((error) => {
+          this.showResponseError = true;
           console.error(error);
         });
       });
@@ -105,7 +109,7 @@ export default {
     // update when more providers are added
     setDatasetType(dataset) {
       switch (dataset.provider) {
-        case 'generic':
+        case 'genericindex':
           dataset.connectorType = 'rest';
           break;
         default:
