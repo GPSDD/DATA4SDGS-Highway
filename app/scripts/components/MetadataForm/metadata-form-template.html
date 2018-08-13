@@ -71,7 +71,7 @@
           >
         </div > 
     </div >            
-    <div class="container" >
+    <div class="container" v-click-outside="onClickOutside" >
         <div class="input-label">License</div>
         <div class="input" >
           <input
@@ -79,9 +79,17 @@
             placeholder="License"
             class="search-input js-search-input"
             v-model.trim="metadata.license"
+            ref="search-input"
+            v-on:click="isOpen = true"            
             name="license"
+            autocomplete="nope"
           >
+          <icon-component :class="['search-icon', '-round', '-xsmall', { '-inverted': isOpen }]"
+                          name="icon-chevron-down" ></icon-component >
         </div > 
+        <div v-if="isOpen" class="c-tabs" >
+          <span class="input-option" v-for="licenseItem in licenses" @click="setLicense(licenseItem)">{{licenseItem}}</span>
+        </div >
     </div >            
     <div class="container" >
         <div class="input-label">Info</div>
