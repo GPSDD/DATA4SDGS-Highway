@@ -90,7 +90,7 @@
         "url":"https://www.apihighways.org/data-sets/21c1039e-8fc6-4aae-8ebb-77c580c63057",
         "originUrl":"https://resourceprojects.org/" 
       }],
-      "thumb": "/static/examples/resource-payments-vs-world-bank-visualization.png",
+      "thumb": "/static/examples/resource-watch-vs-world-bank-visualization.png",
       "html": "<iframe src='https://gpsdd.github.io/Resource-Projects-Visualizations/' width='100%' height='600px' frameborder='0'></iframe>"
   }
 ]

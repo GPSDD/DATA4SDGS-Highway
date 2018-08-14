@@ -15,7 +15,9 @@ $checkbox-color: #aea6a6;
   .input {
     position: relative;
     //height: 60px;
-
+    &-popover {
+      display: inline-block;
+    }
     .search-input {
       width: 100%;
       height: 60px;

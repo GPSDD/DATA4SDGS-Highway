@@ -23,6 +23,8 @@ export default {
   },
   data() {
     return {
+      licenses: ['Public Domain', 'Attribution', 'Share-alike', 'Non-commerical', 'Database Only', 'No Derivatives', 'Other'],
+      isOpen: false,
       metadata: {
         application: ['data4sdgs'],
         language: 'en',
@@ -42,7 +44,11 @@ export default {
     ...mapGetters({
       datasetId: 'getDatasetId',
       token: 'getToken'
-    })
+    }),
+    licensePlaceholder() {
+      return this.metadata.license.length > 0 ? this.metadata.license : 'License';
+    },
+
   },
   methods: {
     goToPlayground() {
@@ -50,6 +56,14 @@ export default {
       ga('send', 'event', 'Add Data Set', 'Click Cancel', 'Click');
       this.$router.push('/data-sets');
     },
+    onClickOutside() {
+      this.isOpen = false;
+    },
+    setLicense(selected) {
+      this.metadata.license = selected;
+      this.isOpen = false;
+    },
+
     saveMetadata() {
       this.showResponseError = false;
       console.log('dataset id', this.datasetId);

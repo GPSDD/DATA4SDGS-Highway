@@ -18,7 +18,7 @@
             v-on:click="isTypeOpen = true"            
             name="dataset type"
             v-validate="'required'"
-            autocomplete="nope"
+            autocomplete="new-password"
           >
           <icon-component :class="['search-icon', '-round', '-xsmall', { '-inverted': isTypeOpen }]"
                           name="icon-chevron-down" ></icon-component >
@@ -28,26 +28,32 @@
           <span class="input-option" v-for="typeItem in types" @click="setType(typeItem)">{{typeItem}}</span>
         </div >
     </div >             -->
-    <div class="container" v-click-outside="onClickOutside" >
-        <div class="input-label">Provider</div>
+    <div class="container">
+        <div class="input-label">
+          Provider
+          <v-popover class="input-popover" trigger="hover" placement="right">
+            <icon-component name="icon-info" class="-small"></icon-component>
+            <div class="tooltip-container" slot="popover">
+              <span class="tooltip-heading">
+                Info
+              </span>
+              <p class="tooltip-content">
+                  The connectorType provider
+              </p>
+            </div>
+          </v-popover>
+        </div>
         <div class="input" >
-          <input
-            type="text"
-            placeholder="Select Dataset Provider"
-            class="search-input js-search-input"
-            v-model.trim="dataset.provider.name"
-            ref="search-input"
-            v-on:click="isOpen = true"            
-            name="dataset provider"
-            v-validate="'required'"
-            autocomplete="nope"
-          >
+          <div class="input-text-selected search-input js-search-input">
+            {{providerPlaceholder}}
+          </div>
           <icon-component :class="['search-icon', '-round', '-xsmall', { '-inverted': isOpen }]"
                           name="icon-chevron-down" ></icon-component >
+          <select class="c-select-tabs" name="provider" v-validate="'required'" v-model="dataset.provider" @change="setProvider()">
+            <option class="input-option" :value="providerItem.value" v-for="providerItem in providers">{{providerItem.name}}</option>
+          </select>
+                              
         </div > <span class="input-required">*</span>
-        <div v-if="isOpen" class="c-tabs" >
-          <span class="input-option" v-for="providerItem in providers" @click="setProvider(providerItem)">{{providerItem.name}}</span>
-        </div >
     </div >            
     <div class="container" >
         <div class="input-label">Name</div>
@@ -64,7 +70,20 @@
         <span class="input-required">*</span>
     </div >            
     <div class="container" >
-        <div class="input-label">Connector URL</div>
+        <div class="input-label">
+          Connector URL
+          <v-popover class="input-popover" trigger="hover" placement="right">
+              <icon-component name="icon-info" class="-small"></icon-component>
+              <div class="tooltip-container" slot="popover">
+                <span class="tooltip-heading">
+                  Info
+                </span>
+                <p class="tooltip-content">
+                    Url of the data source
+                </p>
+              </div>
+            </v-popover>  
+        </div>
         <div class="input" >
           <input
             type="text"
@@ -94,7 +113,20 @@
     <span class="c-add-form__show-advanced" @click="toggleAdvanced">Show Advanced</span>         
     <div class="advanced-options" v-if="showAdvanced">
       <div class="container" v-if="showJsonDataFields">
-          <div class="input-label">Data Path</div>
+          <div class="input-label">
+            Data Path
+            <v-popover class="input-popover" trigger="hover" placement="right">
+                <icon-component name="icon-info" class="-small"></icon-component>
+                <div class="tooltip-container" slot="popover">
+                  <span class="tooltip-heading">
+                    Info
+                  </span>
+                  <p class="tooltip-content">
+                      	Path to the data in a json dataset
+                  </p>
+                </div>
+              </v-popover>    
+          </div>
           <div class="input" >
             <input
               type="text"
@@ -105,7 +137,20 @@
           </div > 
       </div >            
       <div class="container" v-if="showJsonDataFields">
-          <div class="input-label">Data</div>
+          <div class="input-label">
+            Data
+            <v-popover class="input-popover" trigger="hover" placement="right">
+                <icon-component name="icon-info" class="-small"></icon-component>
+                <div class="tooltip-container" slot="popover">
+                  <span class="tooltip-heading">
+                    Info
+                  </span>
+                  <p class="tooltip-content">
+                      JSON DATA only for json connector if connectorUrl not present
+                  </p>
+                </div>
+              </v-popover>    
+          </div>
           <div class="input" >
             <textarea
               type="multiline"
@@ -116,7 +161,20 @@
           </div > 
       </div >            
       <div class="container" v-if="showJsonDataFields">
-          <div class="input-label">Data Attributes</div>
+          <div class="input-label">
+            Data Attributes
+            <v-popover class="input-popover" trigger="hover" placement="right">
+                <icon-component name="icon-info" class="-small"></icon-component>
+                <div class="tooltip-container" slot="popover">
+                  <span class="tooltip-heading">
+                    Info
+                  </span>
+                  <p class="tooltip-content">
+                      Data fields - for json connector if data present
+                  </p>
+                </div>
+              </v-popover>    
+          </div>
           <div class="input" >
             <textarea
               type="multiline"
@@ -146,23 +204,31 @@
           </div >
       </div >             -->
       <div class="container" v-click-outside="onSandboxClickOutside" >
-          <div class="input-label">Sandbox</div>
+          <div class="input-label">
+            Sandbox
+            <v-popover class="input-popover" trigger="hover" placement="right">
+                <icon-component name="icon-info" class="-small"></icon-component>
+                <div class="tooltip-container" slot="popover">
+                  <span class="tooltip-heading">
+                    Info
+                  </span>
+                  <p class="tooltip-content">
+                      Url of the data source
+                  </p>
+                </div>
+              </v-popover>    
+          </div>
           <div class="input" >
-            <input
-              type="text"
-              placeholder="Is Sandbox Dataset"
-              class="search-input js-search-input"
-              v-model.trim="dataset.sandbox"
-              ref="search-input"
-              v-on:click="sandboxIsOpen = true"                          
-            >
+            <div class="input-text-selected search-input js-search-input">
+              {{sandboxPlaceholder}}
+            </div>
             <icon-component :class="['search-icon', '-round', '-xsmall', { '-inverted': sandboxIsOpen }]"
-                            name="icon-chevron-down" ></icon-component >
+                        name="icon-chevron-down" ></icon-component >
+            <select class="c-select-tabs" name="sandbox" v-model="dataset.sandbox">
+              <option class="input-option">Yes</option>
+              <option class="input-option">No</option>
+            </select>
           </div >                       
-          <div v-if="sandboxIsOpen" class="c-tabs" >
-            <span class="input-option" @click="sandbox = 'Yes'">Yes</span>
-            <span class="input-option" @click="sandbox = 'No'">No</span>
-          </div >
       </div >            
     </div>
     <div class="c-add-form__actions">
