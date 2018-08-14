@@ -158,7 +158,7 @@
         return this.selectedDataset && this.selectedDataset.provider !== 'genericindex' && (!this.isShallow || this.selectedDataset.provider === 'resourcewatch');
       },
       showDocsLink() {
-        return this.selectedDataset && this.selectedDataset.provider !== 'genericindex' && this.isShallow && this.selectedDataset.provider !== 'resourcewatch';
+        return this.selectedDataset && this.isShallow && this.selectedDataset.provider !== 'resourcewatch';
       },
       loading() {
         return this.$store.state.selectedDataset.selected.loading;
@@ -227,7 +227,7 @@
             window.open('https://data.humdata.org/faq#body-faq-HDX_API', '_blank');
             break;
           case 'genericindex':
-            window.open('https://datahelpdesk.worldbank.org/knowledgebase/topics/125589-developer-information', '_blank');
+            window.open(this.selectedDataset.connectorUrl, '_blank');
             break;
           case 'un':
             window.open('https://unstats.un.org/SDGAPI/swagger/', '_blank');
