@@ -33,6 +33,9 @@ $checkbox-color: #aea6a6;
       overflow: hidden;
       text-overflow: ellipsis;
     }
+    &-popover {
+      display: inline-block;
+    }
     textarea {
       &.search-input{
         padding: rem(20) 32px !important;

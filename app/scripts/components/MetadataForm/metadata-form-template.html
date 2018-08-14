@@ -19,7 +19,20 @@
         </div > 
     </div >             -->
     <div class="container" >
-        <div class="input-label">Source Organization</div>
+        <div class="input-label">
+          Source Organization
+          <v-popover class="input-popover" trigger="hover" placement="right">
+              <icon-component name="icon-info" class="-small"></icon-component>
+              <div class="tooltip-container" slot="popover">
+                <span class="tooltip-heading">
+                  Info
+                </span>
+                <p class="tooltip-content">
+                    Name of the organization sourcing the data (eg. World Bank)
+                </p>
+              </div>
+            </v-popover>  
+        </div>
         <div class="input" >
           <input
             type="text"
@@ -33,7 +46,20 @@
         <span class="input-required">*</span>
     </div >            
     <div class="container" >
-        <div class="input-label">Datasource Url</div>
+        <div class="input-label">
+          Datasource Url
+          <v-popover class="input-popover" trigger="hover" placement="right">
+              <icon-component name="icon-info" class="-small"></icon-component>
+              <div class="tooltip-container" slot="popover">
+                <span class="tooltip-heading">
+                  Info
+                </span>
+                <p class="tooltip-content">
+                    Link to the human-friendly web page of the source dataset (eg. link to WB website)
+                </p>
+              </div>
+            </v-popover>  
+        </div>
         <div class="input" >
           <input
             type="text"
@@ -47,7 +73,20 @@
         <span class="input-required">*</span>
     </div >            
     <div class="container" >
-        <div class="input-label">Datasource Endpoint</div>
+        <div class="input-label">
+          Datasource Endpoint
+          <v-popover class="input-popover" trigger="hover" placement="right">
+              <icon-component name="icon-info" class="-small"></icon-component>
+              <div class="tooltip-container" slot="popover">
+                <span class="tooltip-heading">
+                  Info
+                </span>
+                <p class="tooltip-content">
+                    The API endpoint or URL to the machine-readable dataset itself
+                </p>
+              </div>
+            </v-popover>
+          </div>
         <div class="input" >
           <input
             type="text"
@@ -59,7 +98,20 @@
         </div > 
     </div >            
     <div class="container" >
-        <div class="input-label">Download Url</div>
+        <div class="input-label">
+          Download Url
+          <v-popover class="input-popover" trigger="hover" placement="right">
+              <icon-component name="icon-info" class="-small"></icon-component>
+              <div class="tooltip-container" slot="popover">
+                <span class="tooltip-heading">
+                  Info
+                </span>
+                <p class="tooltip-content">
+                    URL to API Highways export endpoint to download the given dataset
+                </p>
+              </div>
+            </v-popover>  
+        </div>
         <div class="input" >
           <input
             type="text"
@@ -72,20 +124,46 @@
         </div > 
     </div >            
     <div class="container" v-click-outside="onClickOutside" >
-        <div class="input-label">License</div>
+        <div class="input-label">
+          License
+          <v-popover class="input-popover" trigger="hover" placement="right">
+              <icon-component name="icon-info" class="-small"></icon-component>
+              <div class="tooltip-container" slot="popover">
+                <span class="tooltip-heading">
+                  Info
+                </span>
+                <p class="tooltip-content">
+                    Should be one option from this list: https://data.world/license-help
+                </p>
+              </div>
+            </v-popover>
+        </div>
         <div class="input" >
           <div class="input-text-selected search-input js-search-input">
             {{licensePlaceholder}}
           </div>    
           <icon-component :class="['search-icon', '-round', '-xsmall', { '-inverted': isOpen }]"
                           name="icon-chevron-down" ></icon-component >
+            <select class="c-select-tabs" name="license" v-validate="'required'" v-model="metadata.license" >
+              <option class="input-option" :value="licenseItem" v-for="licenseItem in licenses">{{licenseItem}}</option>
+            </select>
         </div > 
-        <select class="c-select-tabs" name="license" v-validate="'required'" v-model="metadata.license" >
-          <option class="input-option" :value="licenseItem" v-for="licenseItem in licenses">{{licenseItem}}</option>
-        </select>
     </div >            
     <div class="container" >
-        <div class="input-label">Info</div>
+        <div class="input-label">
+          Info
+          <v-popover class="input-popover" trigger="hover" placement="right">
+              <icon-component name="icon-info" class="-small"></icon-component>
+              <div class="tooltip-container" slot="popover">
+                <span class="tooltip-heading">
+                  Info
+                </span>
+                <p class="tooltip-content">
+                    Open-ended field that can include dataset-specific fields for metadatas
+                </p>
+              </div>
+            </v-popover>
+          </div>
         <div class="input" >
           <input
             type="text"
@@ -96,7 +174,7 @@
           >
         </div > 
     </div >            
-    <div class="container" >
+    <!-- <div class="container" >
         <div class="input-label">Units</div>
         <div class="input" >
           <input
@@ -107,7 +185,7 @@
             name="dataset units"
           >
         </div > 
-    </div >            
+    </div >             -->
     <div class="c-add-form__actions">
       <button-component class="-bordered -big -dark" :click="goToPlayground" >Cancel</button-component >
       <button class="c-button -bordered -big -white -filled">Next</button>
