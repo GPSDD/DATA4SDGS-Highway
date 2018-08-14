@@ -44,7 +44,11 @@ export default {
     ...mapGetters({
       datasetId: 'getDatasetId',
       token: 'getToken'
-    })
+    }),
+    licensePlaceholder() {
+      return this.metadata.license.length > 0 ? this.metadata.license : 'License';
+    },
+
   },
   methods: {
     goToPlayground() {

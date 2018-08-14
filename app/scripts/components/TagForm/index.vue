@@ -58,27 +58,28 @@ export default {
     },
     saveTags() {
       this.showResponseError = false;
-      this.$validator.validate().then((isValid) => {
-        if (!isValid) {
-          window.scrollTo(0, 0);
-          return;
-        }
-        const tagsWithEmptyRemoved = this.removeEmptyArrayItems(this.tags);
-        // old vocab tags
-        API.post(`dataset/${this.datasetId}/vocabulary`, { legacy: { tags: tagsWithEmptyRemoved } }, this.token).then(() => {
-          // graph tags
-          API.post(`dataset/${this.datasetId}/vocabulary/knowledge_graph`, { tags: tagsWithEmptyRemoved }, this.token).then(() => {
-            // send email
-            this.$router.push(`/data-sets/${this.datasetId}`);
-          }).catch((error) => {
-            this.showResponseError = true;
-            console.error(error);
-          });
+      const tagsWithEmptyRemoved = this.removeEmptyArrayItems(this.tags);
+
+      // if no tags uploaded - no problem. Let's just take them to the dataset page.
+      if (!tagsWithEmptyRemoved || tagsWithEmptyRemoved.length === 0) {
+        this.$router.push(`/data-sets/${this.datasetId}`);
+        return;
+      }
+
+      // old vocab tags
+      API.post(`dataset/${this.datasetId}/vocabulary`, { legacy: { tags: tagsWithEmptyRemoved } }, this.token).then(() => {
+        // graph tags
+        API.post(`dataset/${this.datasetId}/vocabulary/knowledge_graph`, { tags: tagsWithEmptyRemoved }, this.token).then(() => {
+          // send email
           this.$router.push(`/data-sets/${this.datasetId}`);
         }).catch((error) => {
           this.showResponseError = true;
           console.error(error);
         });
+        this.$router.push(`/data-sets/${this.datasetId}`);
+      }).catch((error) => {
+        this.showResponseError = true;
+        console.error(error);
       });
     }
   },

@@ -32,12 +32,13 @@ export default {
       isTypeOpen: false,
       sandboxIsOpen: false,
       providers: [{ name: 'csv', value: 'csv' }, { name: 'tsv', value: 'tsv' }, { name: 'xml', value: 'xml' }, { name: 'json', value: 'json' }, { name: 'generic', value: 'genericindex' }],
+      provider: '',
       types: ['rest', 'document', 'wms'],
       showAdvanced: false,
       showResponseError: false,
       dataset: {
         connectorType: '',
-        provider: '',
+        provider: { name: '' },
         connectorUrl: '',
         dataPath: '',
         application: ['data4sdgs'],
@@ -54,7 +55,14 @@ export default {
     }),
     showJsonDataFields() {
       return this.provider === 'json' && this.connectorUrl.length === 0;
-    }
+    },
+    providerPlaceholder() {
+      return this.provider.length > 0 ? this.provider : 'Set Dataset Provider';
+    },
+    sandboxPlaceholder() {
+      return this.dataset.sandbox.length > 0 ? this.dataset.sandbox : 'Is Sandbox Dataset';
+    },
+
   },
   methods: {
     ...mapMutations({
@@ -69,9 +77,9 @@ export default {
     onTypeClickOutside() {
       this.typeIsOpen = false;
     },
-    setProvider(selected) {
-      this.dataset.provider = selected;
-      this.isOpen = false;
+    setProvider() {
+      const providerItem = this.providers.filter(x => x.value === this.dataset.provider)[0];
+      this.provider = providerItem.name;
     },
     setType(selected) {
       this.dataset.connectorType = selected;
@@ -92,7 +100,6 @@ export default {
           return;
         }
         let datasetWithEmptyRemoved = this.removeEmptyKeys(this.dataset);
-        datasetWithEmptyRemoved.provider = this.dataset.provider.value;
         datasetWithEmptyRemoved = this.setDatasetType(datasetWithEmptyRemoved);
         API.post('dataset', datasetWithEmptyRemoved, this.token).then((result) => {
           this.setDatasetId(result.data);

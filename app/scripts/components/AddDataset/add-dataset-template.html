@@ -10,6 +10,7 @@
             </div>
           </div>
           <div class="c-add-form__tab-content" :class="{'active': tabs[0].active}"> 
+            <p v-if="message && message.length > 0" class="error-list">{{message}}</p>
             <p>Before you begin, make sure you are logged in and have your API token available.  To generate a token, visit <a href="https://ui.apihighways.org/#/profile" target="_blank">here</a>.</p>
             <div class="container" >
                 <div class="input-label">Token</div>
@@ -31,12 +32,15 @@
             </div>              
           </div>
           <div class="c-add-form__tab-content" :class="{'active': tabs[1].active}"> 
-            <dataset-form-component :nextTab="nextTab"></dataset-form-component>
+              <p v-if="message && message.length > 0" class="error-list">{{message}}</p>
+              <dataset-form-component :nextTab="nextTab"></dataset-form-component>
           </div>
           <div class="c-add-form__tab-content" :class="{'active': tabs[2].active}"> 
-            <metadata-form-component :nextTab="nextTab"></metadata-form-component>
+              <p v-if="message && message.length > 0" class="error-list">{{message}}</p>
+              <metadata-form-component :nextTab="nextTab"></metadata-form-component>
           </div>
           <div class="c-add-form__tab-content" :class="{'active': tabs[3].active}"> 
+              <p v-if="message && message.length > 0" class="error-list">{{message}}</p>
               <tag-form-component></tag-form-component>
           </div>
         </div>
