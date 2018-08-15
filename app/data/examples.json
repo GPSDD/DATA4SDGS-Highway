@@ -39,8 +39,8 @@
       "originUrl":"http://www.wri.org/resources/data-sets/aqueduct-country-and-river-basin-rankings" 
     },{
       "name":"Populated Places",
-      "id":"",
-      "url":"",
+      "id":"17cce87c-029f-4210-b59c-1c90d0e8ae48",
+      "url":"https://apihighways.org/data-sets/17cce87c-029f-4210-b59c-1c90d0e8ae48",
       "originUrl":"https://www.naturalearthdata.com/downloads/10m-cultural-vectors/10m-populated-places/" 
     }],
     "html": "<iframe src='https://gpsdd.github.io/DATA4SDGS-Highway-Examples/#/regions-with-greatest-water-risks' width='100%' height='600px' frameborder='0'></iframe>"
