@@ -59,6 +59,9 @@
       };
     },
     computed: {
+      showCustomLicenseInfo() {
+        return this.metadata && Object.keys(this.metadata.info).length > 0 && Object.keys(this.metadata.info.license).length > 0 && this.metadata.license.toLowerCase() === 'other';
+      },
       metadata() {
         if (this.selectedDataset && this.selectedDataset.metadata.length > 0) {
           return this.selectedDataset.metadata[0].attributes;
@@ -131,9 +134,14 @@
 
           details.push({ heading: 'Language', value: (this.metadata.language === 'en' ? 'English' : this.metadata.language) });
 
-          if (this.metadata.license) {
+          if (this.metadata.license && !this.showCustomLicenseInfo) {
             details.push({ heading: 'License', value: this.metadata.license });
           }
+
+          if (this.metadata.license && this.showCustomLicenseInfo) {
+            details.push({ heading: 'License', value: `<a href="${this.metadata.info.license}" target="_blank">${this.metadata.info.license}</a>` });
+          }
+
 
           if (
             this.metadata.dataSourceEndpoint
