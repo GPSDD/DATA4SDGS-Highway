@@ -15,11 +15,21 @@ export default {
     nextTab: {
       type: Function,
       required: true,
+    },
+    editDataset: {
+      type: Object,
+      required: false
     }
   },
   mixins: [JsonMixin],
   directives: {
     clickOutside: vClickOutside.directive
+  },
+  created() {
+    if (this.editDataset) {
+      this.metadata = this.editDataset.attributes.metadata;
+      this.provider = this.editDataset.attributes.provider;
+    }
   },
   data() {
     return {
@@ -65,8 +75,11 @@ export default {
     },
 
     saveMetadata() {
+      if (this.editDataset) {
+        this.updateMetadata();
+        return;
+      }
       this.showResponseError = false;
-      console.log('dataset id', this.datasetId);
       this.$validator.validate().then((isValid) => {
         if (!isValid) {
           window.scrollTo(0, 0);
@@ -74,6 +87,22 @@ export default {
         }
         const metadataWithEmptyRemoved = this.removeEmptyKeys(this.metadata);
         API.post(`dataset/${this.datasetId}/metadata`, metadataWithEmptyRemoved, this.token).then(() => {
+          this.nextTab();
+        }).catch((error) => {
+          this.showResponseError = true;
+          console.error(error);
+        });
+      });
+    },
+    updateMetadata() {
+      this.showResponseError = false;
+      this.$validator.validate().then((isValid) => {
+        if (!isValid) {
+          window.scrollTo(0, 0);
+          return;
+        }
+        const metadataWithEmptyRemoved = this.removeEmptyKeys(this.metadata);
+        API.patch(`dataset/${this.datasetId}/metadata`, metadataWithEmptyRemoved, this.token).then(() => {
           this.nextTab();
         }).catch((error) => {
           this.showResponseError = true;

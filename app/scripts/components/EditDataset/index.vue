@@ -1,5 +1,5 @@
-<template src="./add-dataset-template.html"></template>
-<style lang="scss" src="./add-dataset-style.scss"></style>
+<template src="./edit-dataset-template.html"></template>
+<style lang="scss" src="./edit-dataset-style.scss"></style>
 <script>
 import router from 'router';
 import { mapGetters, mapMutations } from 'vuex';
@@ -16,7 +16,11 @@ import {
 } from '../../store/mutation-types';
 
 export default {
-  name: 'add-dataset-component',
+  name: 'edit-dataset-component',
+  async created() {
+    console.log(this.$route);
+    await this.$store.dispatch('getDataset', this.$route.params.dataset);
+  },
   directives: {
     clickOutside: vClickOutside.directive
   },
@@ -47,7 +51,8 @@ export default {
   computed: {
     ...mapGetters({
       token: 'getToken',
-      datasetId: 'getDatasetId'
+      datasetId: 'getDatasetId',
+      dataset: 'getDataset'
     }),
     showJsonDataFields() {
       return this.provider === 'json' && this.connectorUrl.length === 0;
@@ -58,8 +63,8 @@ export default {
       setToken: SET_TOKEN
     }),
     setActiveTab(tab) {
-      let index = this.tabs.findIndex(x => x.name === tab.name);
-      index = this.checkTabSecurity(index);
+      const index = this.tabs.findIndex(x => x.name === tab.name);
+      // index = this.checkTabSecurity(index);
       this.deactivateTabs();
       this.tabs[index].active = true;
     },
@@ -76,7 +81,7 @@ export default {
       let index = this.tabs.findIndex(x => x.active);
       this.deactivateTabs();
       index += 1;
-      index = this.checkTabSecurity(index);
+      // index = this.checkTabSecurity(index);
       this.tabs[index].active = true;
     },
     saveToken() {

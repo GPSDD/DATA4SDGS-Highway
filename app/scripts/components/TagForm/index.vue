@@ -11,6 +11,25 @@ import vClickOutside from 'v-click-outside';
 
 export default {
   name: 'tag-form-component',
+  props: {
+    editDataset: {
+      type: Object,
+      required: false
+    }
+  },
+  created() {
+    if (this.editDataset) {
+      console.log(this.editDataset.attributes.vocabulary);
+      const tags = this.editDataset.attributes.vocabulary.attributes ? this.editDataset.attributes.vocabulary.attributes.tags : [''];
+      this.tags = tags.reduce((tagList, tag) =>
+        tagList.push({ value: tag, isOpen: false, filterTags: [], selected: false })
+      , []);
+
+      this.metadata = this.editDataset.attributes.metadata;
+      this.provider = this.editDataset.attributes.provider;
+    }
+  },
+
   data() {
     return {
       tags: [{ value: '', isOpen: false, filterTags: [], selected: false }],
