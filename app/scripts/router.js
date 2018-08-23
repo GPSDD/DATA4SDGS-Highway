@@ -5,6 +5,7 @@ import HomeComponent from 'components/Home';
 import PlaygroundDetailComponent from 'components/PlaygroundDetail';
 import PlaygroundComponent from 'components/Playground';
 import AddDatasetComponent from 'components/AddDataset';
+import EditDatasetComponent from 'components/EditDataset';
 import PartnerComponent from 'components/PartnerApis';
 import HeaderComponent from 'components/Header';
 import FooterComponent from 'components/Footer';
@@ -51,6 +52,14 @@ const routes = [
       HeaderComponent,
       FooterComponent
     }
+  },
+  {
+    path: '/data-sets/:dataset/edit',
+    components: {
+      default: EditDatasetComponent,
+      HeaderComponent,
+      FooterComponent,
+    },
   },
   {
     path: '/token',

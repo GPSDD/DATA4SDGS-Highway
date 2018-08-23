@@ -18,10 +18,18 @@ export default {
     nextTab: {
       type: Function,
       required: true,
+    },
+    editDataset: {
+      type: Object,
+      required: false
     }
   },
   mixins: [JsonMixin],
-  mounted() {
+  created() {
+    if (this.editDataset) {
+      this.dataset = this.editDataset.attributes;
+      this.provider = this.editDataset.attributes.provider;
+    }
   },
   directives: {
     clickOutside: vClickOutside.directive
@@ -94,6 +102,10 @@ export default {
       this.$router.push('/data-sets');
     },
     saveDataset() {
+      if (this.editDataset) {
+        this.updateDataset();
+        return;
+      }
       this.showResponseError = false;
       this.$validator.validate().then((isValid) => {
         if (!isValid) {
@@ -103,6 +115,21 @@ export default {
         datasetWithEmptyRemoved = this.setDatasetType(datasetWithEmptyRemoved);
         API.post('dataset', datasetWithEmptyRemoved, this.token).then((result) => {
           this.setDatasetId(result.data);
+          this.nextTab();
+        }).catch((error) => {
+          this.showResponseError = true;
+          console.error(error);
+        });
+      });
+    },
+    updateDataset() {
+      this.$validator.validate().then((isValid) => {
+        if (!isValid) {
+          return;
+        }
+        let datasetWithEmptyRemoved = this.removeEmptyKeys(this.dataset);
+        datasetWithEmptyRemoved = this.setDatasetType(datasetWithEmptyRemoved);
+        API.patch(`dataset/${this.editDataset.id}`, datasetWithEmptyRemoved, this.token).then(() => {
           this.nextTab();
         }).catch((error) => {
           this.showResponseError = true;

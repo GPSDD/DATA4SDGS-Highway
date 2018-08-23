@@ -37,6 +37,19 @@ class API {
       body: JSON.stringify(body)
     }).then(handleResponse);
   }
+  patch(endpoint, body, token) {
+    console.log(body);
+    const url = `${this.baseURL}/${version}/${endpoint}`;
+    return fetch(url, {
+      method: 'PATCH',
+      headers: {
+        Authorization: `Bearer ${token}`,
+        client: 'front',
+        'Content-Type': 'application/json; charset=utf-8'
+      },
+      body: JSON.stringify(body)
+    }).then(handleResponse);
+  }
 }
 
 const config = {

@@ -139,9 +139,12 @@
           }
 
           if (this.metadata.license && this.showCustomLicenseInfo) {
-            details.push({ heading: 'License', value: `<a href="${this.metadata.info.license}" target="_blank">${this.metadata.info.license}</a>` });
+            if (this.metadata.info.license.indexOf('http') > 0) {
+              details.push({ heading: 'License', value: `<a href="${this.metadata.info.license}" target="_blank">${this.metadata.info.license}</a>` });
+            } else {
+              details.push({ heading: 'License', value: this.metadata.info.license });
+            }
           }
-
 
           if (
             this.metadata.dataSourceEndpoint
