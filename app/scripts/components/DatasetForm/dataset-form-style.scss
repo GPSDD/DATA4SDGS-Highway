@@ -39,6 +39,7 @@ $checkbox-color: #aea6a6;
     textarea {
       &.search-input{
         padding: rem(20) 32px !important;
+        line-height: 1.8;
       }
     }
   .search-icon {

@@ -60,7 +60,7 @@
     },
     computed: {
       showCustomLicenseInfo() {
-        return this.metadata && Object.keys(this.metadata.info).length > 0 && Object.keys(this.metadata.info.license).length > 0 && this.metadata.license.toLowerCase() === 'other';
+        return this.metadata && this.metadata.info && Object.keys(this.metadata.info).length > 0 && this.metadata.info.license && Object.keys(this.metadata.info.license).length > 0 && this.metadata.license.toLowerCase() === 'other';
       },
       metadata() {
         if (this.selectedDataset && this.selectedDataset.metadata.length > 0) {
