@@ -29,6 +29,10 @@
       "label": "HUMANITARIAN DATA EXCHANGE"
     },
     {
+      "value": "World Bank",
+      "label": "WORLD BANK"
+    },
+    {
       "value": "United Nations Statistics Division",
       "label": "UNITED NATIONS STATISTICS DIVISION"
     },
