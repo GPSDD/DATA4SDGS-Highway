@@ -114,6 +114,7 @@ const routes = [
     path: '/hackathon',
     components: {
       default: HackathonComponent,
+      HeroComponent,
       HeaderComponent,
       FooterComponent,
     },
