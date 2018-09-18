@@ -6,6 +6,7 @@ import PlaygroundDetailComponent from 'components/PlaygroundDetail';
 import PlaygroundComponent from 'components/Playground';
 import AddDatasetComponent from 'components/AddDataset';
 import EditDatasetComponent from 'components/EditDataset';
+import HackathonComponent from 'components/Hackathon';
 import PartnerComponent from 'components/PartnerApis';
 import HeaderComponent from 'components/Header';
 import FooterComponent from 'components/Footer';
@@ -105,6 +106,15 @@ const routes = [
     path: '/examples/:id',
     components: {
       default: ExamplesDetailComponent,
+      HeaderComponent,
+      FooterComponent,
+    },
+  },
+  {
+    path: '/hackathon',
+    components: {
+      default: HackathonComponent,
+      HeroComponent,
       HeaderComponent,
       FooterComponent,
     },

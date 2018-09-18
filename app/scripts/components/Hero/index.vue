@@ -30,10 +30,12 @@ export default {
       params = params && `/${params}`;
       location = params ? location.split(params)[0] : location;
 
+      console.log(location);
       computedLocation.home = location === '/';
       computedLocation.playground = location === '/data-sets';
       computedLocation.token = location === '/token';
       computedLocation.partners = location === '/partner-apis';
+      computedLocation.hackathon = location === '/hackathon';
       computedLocation.examples = location === '/examples';
       return computedLocation;
     },

@@ -46,6 +46,19 @@
         border: solid 1px $gold-yellow;
         top: 50%;
       }
+      .event-highlight {
+        text-align: center;
+        a {
+          &:before {
+            content: 'Current Event: ';
+            color: white;
+            font-size: 16px;
+            font-weight: normal;
+          }
+          font-size: 18px;
+          display: inline-block;
+        }
+      }
     }
   }
 
