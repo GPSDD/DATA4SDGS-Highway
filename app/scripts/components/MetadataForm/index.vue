@@ -33,7 +33,7 @@ export default {
   },
   data() {
     return {
-      licenses: ['Public Domain', 'Attribution', 'Share-alike', 'Non-commerical', 'Database Only', 'No Derivatives', 'Other'],
+      licenses: ['Public Domain', 'Attribution', 'Share-alike', 'Non-commercial', 'Database Only', 'No Derivatives', 'Other'],
       isOpen: false,
       metadata: {
         application: ['data4sdgs'],
