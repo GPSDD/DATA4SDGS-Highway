@@ -22,3 +22,32 @@
     }
   }
 }
+
+.dataset-section {
+  background-color: $theme-blue;
+  padding: 40px 0;
+  h2 {
+    color: $white;
+    text-align: center;
+  }
+}
+.dataset-list{
+  list-style: none;
+  display: grid;
+  grid-gap: 30px 30px;
+  grid-template-columns: auto auto auto;
+  li{
+    padding: rem(30);
+    background-color: $white;
+
+    .dataset-link {
+      text-transform: none;
+      color: $black;
+      margin-bottom: 30px;
+      display: inline-block;
+      &:hover{
+        text-decoration: underline;
+      }
+    } 
+  }    
+}

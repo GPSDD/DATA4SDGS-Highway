@@ -1,10 +1,30 @@
-<section class="c-token">
-  <div class="row">
-    <div class="column small-12 medium-8 medium-offset-2">
-      <div class="token">
-        <textarea :value="token" id="token" readOnly v-on:click="selectAll" />
-        <button-component class="-dark -bordered -big" :click="getToken">Generate Token</button-component>
+<div>
+  <section class="c-token">
+    <div class="row">
+      <div class="column small-12 medium-8 medium-offset-2">
+        <div class="token">
+          <textarea :value="token" id="token" readOnly v-on:click="selectAll" />
+          <button-component class="-dark -bordered -big" :click="getToken">Generate Token</button-component>
+        </div>
       </div>
     </div>
-  </div>
-</section>
+  </section>
+  <section class="dataset-section">
+    <div class="row" v-if="datasets && datasets.length > 0">
+      <div class="column small-12">
+        <div class="token">
+          <h2>Your Datasets</h2>
+          <ul class="dataset-list">
+            <li class="dataset-list__item" v-for="dataset in datasets" :key="dataset.id">
+              <div>      
+                <a class="dataset-link" :href="datasetLink(dataset)">{{dataset.attributes.name}}</a>
+              </div>
+              <a :href="datasetEditLink(dataset)">edit</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>  
+  </section>
+  
+</div>

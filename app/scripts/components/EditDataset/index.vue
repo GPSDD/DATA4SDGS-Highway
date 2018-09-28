@@ -24,6 +24,12 @@ export default {
   directives: {
     clickOutside: vClickOutside.directive
   },
+  mounted() {
+    if (this.$route.query.token) {
+      this.modelToken = this.$route.query.token;
+    }
+  },
+
   data() {
     return {
       tabs: [

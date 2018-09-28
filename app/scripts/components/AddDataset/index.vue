@@ -44,6 +44,11 @@ export default {
       message: ''
     };
   },
+  mounted() {
+    if (this.$route.query.token) {
+      this.modelToken = this.$route.query.token;
+    }
+  },
   computed: {
     ...mapGetters({
       token: 'getToken',

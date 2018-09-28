@@ -3,13 +3,24 @@
 
 <script>
   import ButtonComponent from 'components/Button';
+  import DatasetListComponent from 'components/DatasetList';
   import store from 'store';
   import { mapState } from 'vuex';
+  import API from 'services/ApiManager';
 
   export default {
     name: 'token-page',
     components: {
-      ButtonComponent
+      ButtonComponent, DatasetListComponent
+    },
+    data() {
+      return {
+        datasets: [],
+        pageNum: 1
+      };
+    },
+    mounted() {
+      this.getUserDatasets();
     },
     computed: {
       ...mapState({
@@ -23,6 +34,19 @@
       getToken() {
         store.dispatch('setToken');
         this.selectAll();
+      },
+      datasetLink(dataset) {
+        return `/dataset/${dataset.id}`;
+      },
+      datasetEditLink(dataset) {
+        return `/data-sets/${dataset.id}/edit?token=${this.$route.query.token}`;
+      },
+      async getUserDatasets() {
+        const user = await API.getWithAuth('auth/check-logged', null, this.$route.query.token);
+        if (user && user.id) {
+          const response = await API.get('dataset', `userId=${user.id}&includes=metadata&page[number]=${this.pageNum}`);
+          this.datasets = response.data.map(x => Object.assign(x, x.attributes));
+        }
       }
     }
   };
