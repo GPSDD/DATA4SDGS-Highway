@@ -67,5 +67,12 @@
   .content-text {
     font-size: $font-size-normal;
     color: $black;
+    +.content-title{
+      margin-top: 40px;
+    }
+  }
+  .content-image {
+    max-width: 100%;
+    margin: 20px 0;
   }
 }

@@ -1,15 +1,15 @@
 <div class="c-search" >
   <div class="container" v-click-outside="onClickOutside" >
-    <div class="input" >
+    <div class="input" @click="isOpen = !isOpen">
       <input
         type="search"
         placeholder="Search and filter datasets"
         class="search-input js-search-input"
         v-model.trim="queryState"
         ref="search-input"
-        v-on:click="isOpen = true"
+        
       >
-      <icon-component :class="['search-icon', '-round', '-xsmall', { '-inverted': isOpen }]"
+      <icon-component   :class="['search-icon', '-round', '-xsmall', { '-inverted': isOpen }]"
                       name="icon-chevron-down" ></icon-component >
     </div >
     <div v-if="selectedFiltersLabels.length > 0" class="c-filters" >
@@ -35,12 +35,12 @@
                               :group="'dataSources'"
                               icon="icon-check" ></checkbox-component >
         </tab >
-        <tab id="geography" :name="`Geography <span class='number-selected'>${selections.geography}</span>`" >
+        <tab id="geography" :name="`Country/Territory <span class='number-selected'>${selections.geography}</span>`" >
           <checkbox-component :items="filters.geography" :initial="selectedFilters.geography"
                               :group="'geography'"
                               icon="icon-check" ></checkbox-component >
         </tab >
-        <tab id="topics" :name="`Topic <span class='number-selected'>${selections.topics}</span>`" >
+        <!-- <tab id="topics" :name="`Topic <span class='number-selected'>${selections.topics}</span>`" >
           <checkbox-component :items="filters.topics" :initial="selectedFilters.topics"
                               :group="'topics'"
                               icon="icon-check" ></checkbox-component >
@@ -50,7 +50,7 @@
           <checkbox-component :items="filters.frequency" :initial="selectedFilters.frequency"
                               :group="'frequency'"
                               icon="icon-check" ></checkbox-component >
-        </tab >
+        </tab > -->
         <tab id="sdg"
              :name="`SDG <span class='number-selected'>${selections.sdg}</span>`" >
           <checkbox-component :items="filters.sdg" :initial="selectedFilters.sdg"
