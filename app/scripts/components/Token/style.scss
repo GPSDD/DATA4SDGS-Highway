@@ -36,6 +36,9 @@
   display: grid;
   grid-gap: 30px 30px;
   grid-template-columns: auto auto auto;
+  &__actions {
+    text-align: center;
+  }
   li{
     padding: rem(30);
     background-color: $white;

@@ -139,7 +139,7 @@
           }
 
           if (this.metadata.license && this.showCustomLicenseInfo) {
-            if (this.metadata.info.license.indexOf('http') > 0) {
+            if (this.metadata.info.license.indexOf('http') > -1) {
               details.push({ heading: 'License', value: `<a href="${this.metadata.info.license}" target="_blank">${this.metadata.info.license}</a>` });
             } else {
               details.push({ heading: 'License', value: this.metadata.info.license });

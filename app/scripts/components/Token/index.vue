@@ -45,8 +45,17 @@
         const user = await API.getWithAuth('auth/check-logged', null, this.$route.query.token);
         if (user && user.id) {
           const response = await API.get('dataset', `userId=${user.id}&includes=metadata&page[number]=${this.pageNum}`);
-          this.datasets = response.data.map(x => Object.assign(x, x.attributes));
+          if (this.pageNum === 1) {
+            this.datasets = response.data.map(x => Object.assign(x, x.attributes));
+          } else {
+            this.datasets = this.datasets.concat(response.data.map(
+                x => Object.assign(x, x.attributes)));
+          }
         }
+      },
+      loadMore() {
+        this.pageNum += 1;
+        this.getUserDatasets();
       }
     }
   };
