@@ -74,6 +74,15 @@
         }
         return null;
       },
+      isCartoDataset() {
+        return this.selectedDataset && this.selectedDataset.provider === 'cartodb';
+      },
+      cartoCsvLink() {
+        return `http://oneclick.cartodb.com/?file=${encodeURIComponent(this.metadata.dataDownloadUrl.csv.replace('select * from ', 'select%20*%20from%20'))}`;
+      },
+      csvLink() {
+        return `https://api.apihighways.org/query?sql=select%20*%20from%20${this.selectedDataset.id}&format=csv`;
+      },
       metadataDetails() {
         const details = [];
 

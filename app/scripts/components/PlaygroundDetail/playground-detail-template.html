@@ -61,18 +61,18 @@
           </ul>
         </div>
 
-        <div class="sidebar-links-section" v-if="false">
+        <div class="sidebar-links-section" v-if="isCartoDataset && metadata.dataDownloadUrl && metadata.dataDownloadUrl.csv">
            <span class="sidebar-links-heading">
-            <icon-component name="icon-external-link" class="-medium"></icon-component>
-            External Integrations
+            <icon-component name="icon-external-link" class="-small"></icon-component>
+            <span class="sidebar-links-heading-text">External Integrations</span>            
           </span>
           <ul class="sidebar-links -integrations">
             <li>
-              <a href="metadata.dataDownloadUrl.csv">CARTO</a>
+              <a :href="cartoCsvLink">CARTO</a>
             </li>
-            <li>
+            <!-- <li>
               <a href="metadata.dataDownloadUrl.json">Data.World</a>
-            </li>
+            </li> -->
           </ul>
         </div>
         <div class="sidebar-links-section">
