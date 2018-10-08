@@ -13,6 +13,7 @@ const dataset = {
       state.datasetId = payload.id;
     },
     [SET_DATASET_FORM](state, payload) {
+      console.log(payload);
       state.dataset = payload;
     },
   },

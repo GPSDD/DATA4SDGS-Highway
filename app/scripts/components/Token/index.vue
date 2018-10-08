@@ -36,7 +36,7 @@
         this.selectAll();
       },
       datasetLink(dataset) {
-        return `/dataset/${dataset.id}`;
+        return `/data-sets/${dataset.id}`;
       },
       datasetEditLink(dataset) {
         return `/data-sets/${dataset.id}/edit?token=${this.$route.query.token}`;

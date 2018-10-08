@@ -27,8 +27,11 @@ export default {
   },
   created() {
     if (this.editDataset) {
-      this.metadata = this.editDataset.attributes.metadata;
+      this.metadata = (this.editDataset.attributes.metadata &&
+        this.editDataset.attributes.metadata.length > 0)
+        ? this.editDataset.attributes.metadata[0].attributes : this.editDataset.attributes.metadata;
       this.provider = this.editDataset.attributes.provider;
+      this.metadata.info = JSON.stringify(this.metadata.info);
     }
   },
   data() {
@@ -85,6 +88,9 @@ export default {
           window.scrollTo(0, 0);
           return;
         }
+        if (this.metadata.info.length > 0) {
+          this.metadata.info = JSON.parse(this.metadata.info);
+        }
         const metadataWithEmptyRemoved = this.removeEmptyKeys(this.metadata);
         API.post(`dataset/${this.datasetId}/metadata`, metadataWithEmptyRemoved, this.token).then(() => {
           this.nextTab();
@@ -101,8 +107,11 @@ export default {
           window.scrollTo(0, 0);
           return;
         }
+        if (this.metadata.info.length > 0) {
+          this.metadata.info = JSON.parse(this.metadata.info);
+        }
         const metadataWithEmptyRemoved = this.removeEmptyKeys(this.metadata);
-        API.patch(`dataset/${this.datasetId}/metadata`, metadataWithEmptyRemoved, this.token).then(() => {
+        API.patch(`dataset/${this.editDataset.id}/metadata`, metadataWithEmptyRemoved, this.token).then(() => {
           this.nextTab();
         }).catch((error) => {
           this.showResponseError = true;

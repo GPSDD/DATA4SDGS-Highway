@@ -28,7 +28,7 @@
           <span class="input-option" v-for="typeItem in types" @click="setType(typeItem)">{{typeItem}}</span>
         </div >
     </div >             -->
-    <div class="container">
+    <div class="container" v-if="!this.editDataset">
         <div class="input-label">
           Provider
           <v-popover class="input-popover" trigger="hover" placement="right">
@@ -69,7 +69,7 @@
         </div > 
         <span class="input-required">*</span>
     </div >            
-    <div class="container" >
+    <div class="container" v-if="!this.editDataset" >
         <div class="input-label">
           Connector URL
           <v-popover class="input-popover" trigger="hover" placement="right">

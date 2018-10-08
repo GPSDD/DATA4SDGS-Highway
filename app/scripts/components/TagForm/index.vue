@@ -20,12 +20,15 @@ export default {
   created() {
     if (this.editDataset) {
       console.log(this.editDataset.attributes.vocabulary);
-      const tags = this.editDataset.attributes.vocabulary.attributes ? this.editDataset.attributes.vocabulary.attributes.tags : [''];
-      this.tags = tags.reduce((tagList, tag) =>
-        tagList.push({ value: tag, isOpen: false, filterTags: [], selected: false })
-      , []);
+      const tags = this.editDataset.attributes.vocabulary[0].attributes ? this.editDataset.attributes.vocabulary[0].attributes.tags : [''];
+      this.tags = tags.reduce((tagList, tag) => {
+        tagList.push({ value: tag, isOpen: false, filterTags: [], selected: false });
+        return tagList;
+      }, []);
 
-      this.metadata = this.editDataset.attributes.metadata;
+      this.metadata = (this.editDataset.attributes.metadata &&
+        this.editDataset.attributes.metadata.length > 0)
+        ? this.editDataset.attributes.metadata[0].attributes : this.editDataset.attributes.metadata;
       this.provider = this.editDataset.attributes.provider;
     }
   },
