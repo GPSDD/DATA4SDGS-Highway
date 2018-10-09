@@ -37,6 +37,12 @@
     </div >
   </div >
 
+  <div v-if="location.communities" >
+    <div class="hero-app-content" >
+      <h1 v-if="heroTitle.length > 0">{{heroTitle}}</h1>
+      <h1 v-if="heroTitle.length === 0">Communities</h1>
+    </div >
+  </div >
   <div v-if="location.hackathon" >
     <div class="hero-app-content" >
       <h1>Hackathon Documentation</h1>

@@ -5,36 +5,31 @@
       "label": "PREP- PARTNERSHIP FOR RESILIENCE & PREPAREDNESS"
     },
     {
-      "value": "Resource Watch",
-      "label": "RESOURCE WATCH"
+      "value": "resourcewatch",
+      "label": "RESOURCE WATCH",
+      "provider": true
     },
     {
       "value": "Aqueduct",
       "label": "AQUEDUCT"
     },
     {
-      "value": "Resource Watch API",
-      "label": "RESOURCE WATCH API"
-    },
-    {
-      "value": "Global Forest Watch",
-      "label": "GLOBAL FOREST WATCH"
-    },
-    {
-      "value": "Global Forest Watch - Climate",
-      "label": "GLOBAL FOREST WATCH - CLIMATE"
-    },
-    {
       "value": "HDX API",
       "label": "HUMANITARIAN DATA EXCHANGE"
     },
     {
-      "value": "World Bank",
-      "label": "WORLD BANK"
+      "value": "worldbank",
+      "label": "WORLD BANK",
+      "provider": true
     },
     {
       "value": "United Nations Statistics Division",
       "label": "UNITED NATIONS STATISTICS DIVISION"
+    },
+    {
+      "value": "carto",
+      "label": "CARTO (GEOSPATIAL)",
+      "provider": true
     },
     {
       "value": "gee", 

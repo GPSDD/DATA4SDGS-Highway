@@ -1,0 +1,14 @@
+@import '../../../styles/variables';
+
+.vue-simple-markdown {
+  padding: 80px 0;
+}
+
+.markdown-body {
+  h1 {
+    text-align: left;
+  }
+  a {
+    color: $link-font-color;
+  }
+}

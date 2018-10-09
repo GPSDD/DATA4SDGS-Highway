@@ -53,7 +53,9 @@ export default{
   methods: {
     selectDataset() {
       // window.open(`/data-sets/${this.dataset.id}`)
-      this.$router.push(`/data-sets/${this.dataset.id}`);
+      const routeData = this.$router.resolve(`/data-sets/${this.dataset.id}`);
+      window.open(routeData.href, '_blank');
+      // this.$router.push(`/data-sets/${this.dataset.id}`);
     },
     getMetadataInfo() {
       const metadata = this.dataset.metadata && this.dataset.metadata[0];

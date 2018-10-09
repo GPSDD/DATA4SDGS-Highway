@@ -7,6 +7,7 @@ import PlaygroundComponent from 'components/Playground';
 import AddDatasetComponent from 'components/AddDataset';
 import EditDatasetComponent from 'components/EditDataset';
 import HackathonComponent from 'components/Hackathon';
+import CommunitiesComponent from 'components/Communities';
 import PartnerComponent from 'components/PartnerApis';
 import HeaderComponent from 'components/Header';
 import FooterComponent from 'components/Footer';
@@ -114,6 +115,24 @@ const routes = [
     path: '/hackathon',
     components: {
       default: HackathonComponent,
+      HeroComponent,
+      HeaderComponent,
+      FooterComponent,
+    },
+  },
+  {
+    path: '/communities',
+    components: {
+      default: CommunitiesComponent,
+      HeroComponent,
+      HeaderComponent,
+      FooterComponent,
+    },
+  },
+  {
+    path: '/communities/:project',
+    components: {
+      default: CommunitiesComponent,
       HeroComponent,
       HeaderComponent,
       FooterComponent,
