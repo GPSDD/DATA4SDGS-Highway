@@ -73,8 +73,15 @@ const searchDatasets = {
         const graphFilterArray = [].concat(...Object.values(graphFilter));
         const tags = graphFilterArray.length > 0 ? `&${graphFilterArray.map((elem, index) => `concepts[0][${index}]=${encodeURIComponent(elem)}`).join('&')}` : '';
 
-        const queryEncoded = encodeURIComponent(state.search.query);
-        const search = state.search.query && state.search.query !== '' ? `&name=${queryEncoded}` : '';
+        //allow to search tags by entering tag:{tagname}
+        let queryEncoded = encodeURIComponent(state.search.query);
+        let search = '';
+        if (state.search.query.indexOf('tag:') === 0) {
+          queryEncoded = state.search.query.substring(4);
+          search = `&vocabulary=${queryEncoded}`;
+        } else {
+          search = state.search.query && state.search.query !== '' ? `&name=${queryEncoded}` : '';
+        }
 
         // Using XMLHttpRequest to be able to cancel request
         const url = `${BASE_URL}/v1/dataset?published=true&includes=metadata&page[size]=100${search}${tags}${taxnomyFilter}${providerFilter}`;
