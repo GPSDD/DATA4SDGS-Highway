@@ -76,7 +76,7 @@ const searchDatasets = {
         //allow to search tags by entering tag:{tagname}
         let queryEncoded = encodeURIComponent(state.search.query);
         let search = '';
-        if (state.search.query.indexOf('tag:') === 0) {
+        if (state.search.query && state.search.query.length && state.search.query.indexOf('tag:') === 0) {
           queryEncoded = state.search.query.substring(4);
           search = `&vocabulary=${queryEncoded}`;
         } else {
