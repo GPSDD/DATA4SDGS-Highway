@@ -73,7 +73,7 @@ const searchDatasets = {
         const graphFilterArray = [].concat(...Object.values(graphFilter));
         const tags = graphFilterArray.length > 0 ? `&${graphFilterArray.map((elem, index) => `concepts[0][${index}]=${encodeURIComponent(elem)}`).join('&')}` : '';
 
-        //allow to search tags by entering tag:{tagname}
+        // allow to search tags by entering tag:{tagname}
         let queryEncoded = encodeURIComponent(state.search.query);
         let search = '';
         if (state.search.query && state.search.query.length && state.search.query.indexOf('tag:') === 0) {
