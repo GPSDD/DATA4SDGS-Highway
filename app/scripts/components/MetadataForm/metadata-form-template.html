@@ -145,7 +145,7 @@
           <icon-component :class="['search-icon', '-round', '-xsmall', { '-inverted': isOpen }]"
                           name="icon-chevron-down" ></icon-component >
             <select class="c-select-tabs" name="license" v-validate="'required'" v-model="metadata.license" >
-              <option class="input-option" :value="licenseItem" v-for="licenseItem in licenses">{{licenseItem}}</option>
+              <option class="input-option" :value="licenseItem.value" v-for="licenseItem in licenses">{{licenseItem.label}}</option>
             </select>
         </div > 
     </div >            

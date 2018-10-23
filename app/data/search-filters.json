@@ -35,6 +35,12 @@
       "value": "gee", 
       "label": "GOOGLE EARTH ENGINE",
       "provider": true
+    },
+    {
+      "value": "genericindex", 
+      "label": "EXTERNAL PARTNER APIS",
+      "provider": true,
+      "separated": true
     }
   ],
   "geography": [

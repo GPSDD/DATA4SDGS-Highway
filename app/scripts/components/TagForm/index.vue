@@ -26,9 +26,6 @@ export default {
         return tagList;
       }, []);
 
-      this.metadata = (this.editDataset.attributes.metadata &&
-        this.editDataset.attributes.metadata.length > 0)
-        ? this.editDataset.attributes.metadata[0].attributes : this.editDataset.attributes.metadata;
       this.provider = this.editDataset.attributes.provider;
     }
   },
@@ -48,7 +45,10 @@ export default {
     ...mapGetters({
       datasetId: 'getDatasetId',
       token: 'getToken'
-    })
+    }),
+    currentDataseId() {
+      return this.datasetId ? this.datasetId : this.editDataset.id;
+    }
   },
   async mounted() {
     await API.get('graph/query/list-concepts').then((results) => {
@@ -83,22 +83,23 @@ export default {
       const tagsWithEmptyRemoved = this.removeEmptyArrayItems(this.tags);
 
       // if no tags uploaded - no problem. Let's just take them to the dataset page.
+
       if (!tagsWithEmptyRemoved || tagsWithEmptyRemoved.length === 0) {
-        this.$router.push(`/data-sets/${this.datasetId}`);
+        this.$router.push(`/data-sets/${this.currentDataseId}`);
         return;
       }
 
       // old vocab tags
-      API.post(`dataset/${this.datasetId}/vocabulary`, { legacy: { tags: tagsWithEmptyRemoved } }, this.token).then(() => {
+      API.post(`dataset/${this.currentDataseId}/vocabulary`, { legacy: { tags: tagsWithEmptyRemoved } }, this.token).then(() => {
         // graph tags
-        API.post(`dataset/${this.datasetId}/vocabulary/knowledge_graph`, { tags: tagsWithEmptyRemoved }, this.token).then(() => {
+        API.post(`dataset/${this.currentDataseId}/vocabulary/knowledge_graph`, { tags: tagsWithEmptyRemoved }, this.token).then(() => {
           // send email
-          this.$router.push(`/data-sets/${this.datasetId}`);
+          this.$router.push(`/data-sets/${this.currentDataseId}`);
         }).catch((error) => {
           this.showResponseError = true;
           console.error(error);
         });
-        this.$router.push(`/data-sets/${this.datasetId}`);
+        this.$router.push(`/data-sets/${this.currentDataseId}`);
       }).catch((error) => {
         this.showResponseError = true;
         console.error(error);

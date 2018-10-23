@@ -46,7 +46,13 @@
       }
     }
   }
-
+  .c-separator {
+    width: 94%;
+    height: 1px;
+    display: block;
+    background-color: #cdcdcd;
+    margin: 16px 0;
+  }
   input[type=checkbox] {
     display: none;
   }

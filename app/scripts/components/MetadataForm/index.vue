@@ -27,17 +27,27 @@ export default {
   },
   created() {
     if (this.editDataset) {
-      this.metadata = (this.editDataset.attributes.metadata &&
-        this.editDataset.attributes.metadata.length > 0)
-        ? this.editDataset.attributes.metadata[0].attributes : this.editDataset.attributes.metadata;
+      if (this.editDataset.attributes.metadata && this.editDataset.attributes.metadata.length > 0) {
+        this.existingMetadata = true;
+        this.metadata = this.editDataset.attributes.metadata[0].attributes;
+      }
       this.provider = this.editDataset.attributes.provider;
       this.metadata.info = JSON.stringify(this.metadata.info);
     }
   },
   data() {
     return {
-      licenses: ['Public Domain', 'Attribution', 'Share-alike', 'Non-commercial', 'Database Only', 'No Derivatives', 'Other'],
+      licenses: [
+        { label: 'Public Domain', value: 'CC-0' },
+        { label: 'Public Domain Dedication and License', value: 'PDDL' },
+        { label: 'Attribution', value: 'CC-BY' },
+        { label: 'Share-alike', value: 'CC-BY-SA' },
+        { label: 'Non-commercial', value: 'CC BY-NC' },
+        { label: 'Open Database License', value: 'ODC-ODbL' },
+        { label: 'No Derivatives', value: 'CC BY-ND' },
+        { label: 'Other', value: 'Other' }],
       isOpen: false,
+      existingMetadata: false,
       metadata: {
         application: ['data4sdgs'],
         language: 'en',
@@ -59,7 +69,7 @@ export default {
       token: 'getToken'
     }),
     licensePlaceholder() {
-      return this.metadata.license.length > 0 ? this.metadata.license : 'License';
+      return this.metadata.license && this.metadata.license.length > 0 ? this.metadata.license : 'License';
     },
 
   },
@@ -78,7 +88,7 @@ export default {
     },
 
     saveMetadata() {
-      if (this.editDataset) {
+      if (this.editDataset && this.existingMetadata) {
         this.updateMetadata();
         return;
       }
@@ -89,10 +99,16 @@ export default {
           return;
         }
         if (this.metadata.info.length > 0) {
-          this.metadata.info = JSON.parse(this.metadata.info);
+          if (this.metadata.info.indexOf('{') === -1) {
+            this.metadata.info = { info: this.metadata.info };
+          } else {
+            this.metadata.info = JSON.parse(this.metadata.info);
+          }
         }
         const metadataWithEmptyRemoved = this.removeEmptyKeys(this.metadata);
-        API.post(`dataset/${this.datasetId}/metadata`, metadataWithEmptyRemoved, this.token).then(() => {
+        console.log(this.datasetId);
+        const datasetId = this.datasetId ? this.datasetId : this.editDataset.id;
+        API.post(`dataset/${datasetId}/metadata`, metadataWithEmptyRemoved, this.token).then(() => {
           this.nextTab();
         }).catch((error) => {
           this.showResponseError = true;
@@ -108,7 +124,11 @@ export default {
           return;
         }
         if (this.metadata.info.length > 0) {
-          this.metadata.info = JSON.parse(this.metadata.info);
+          if (this.metadata.info.indexOf('{') === -1) {
+            this.metadata.info = { info: this.metadata.info };
+          } else {
+            this.metadata.info = JSON.parse(this.metadata.info);
+          }
         }
         const metadataWithEmptyRemoved = this.removeEmptyKeys(this.metadata);
         API.patch(`dataset/${this.editDataset.id}/metadata`, metadataWithEmptyRemoved, this.token).then(() => {
