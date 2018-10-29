@@ -34,11 +34,36 @@ class API {
       }
     }).then(handleResponse);
   }
+  delete(endpoint, token) {
+    const url = `${this.baseURL}/${version}/${endpoint}`;
+    return fetch(url, {
+      method: 'DELETE',
+      headers: {
+        Authorization: `Bearer ${token}`,
+        client: 'front',
+        'Content-Type': 'application/json; charset=utf-8'
+      },
+    }).then(handleResponse);
+  }
+
   post(endpoint, body, token) {
     console.log(body);
     const url = `${this.baseURL}/${version}/${endpoint}`;
     return fetch(url, {
       method: 'POST',
+      headers: {
+        Authorization: `Bearer ${token}`,
+        client: 'front',
+        'Content-Type': 'application/json; charset=utf-8'
+      },
+      body: JSON.stringify(body)
+    }).then(handleResponse);
+  }
+  put(endpoint, body, token) {
+    console.log(body);
+    const url = `${this.baseURL}/${version}/${endpoint}`;
+    return fetch(url, {
+      method: 'PUT',
       headers: {
         Authorization: `Bearer ${token}`,
         client: 'front',

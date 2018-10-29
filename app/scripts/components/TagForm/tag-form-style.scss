@@ -4,6 +4,29 @@
 $checkbox-color: #aea6a6;
 
 .c-add-form {
+  .edit-tags-list {
+    &::before {
+      content: "Existing Tags:";
+      margin-right: 8px;
+    }
+    &__item {
+      display: inline-block;
+      margin-bottom: 8px;
+      background-color: #435198;
+      color: white;
+      margin-right: 10px;
+      padding: 4px;
+      cursor: pointer;
+      .close {
+        font-size: 26px;
+        position: relative;
+        line-height: 1;
+        top: 2px;
+        margin: 0 4px;
+        display: inline-block;
+      }
+    }
+  }
   &__actions{
     &.left-align{
       text-align: left;

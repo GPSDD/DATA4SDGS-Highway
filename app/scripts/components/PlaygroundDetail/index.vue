@@ -78,6 +78,9 @@
         return this.selectedDataset && this.selectedDataset.provider === 'cartodb';
       },
       cartoCsvLink() {
+        if (this.isCartoDataset) {
+          return this.selectedDataset.connectorUrl;
+        }
         return `http://oneclick.cartodb.com/?file=${encodeURIComponent(this.metadata.dataDownloadUrl.csv.replace('select * from ', 'select%20*%20from%20'))}`;
       },
       csvLink() {

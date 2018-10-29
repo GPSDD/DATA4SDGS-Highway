@@ -2,7 +2,9 @@
     <div class="error-list" v-if="showResponseError">
       <p>We're sorry, there was a problem sending your request.</p>
     </div>
-  
+    <div class="edit-tags-list" v-if="editTags && editTags.length > 0">
+      <span class="edit-tags-list__item" v-for="(editTag,ndx) in editTags" @click="deleteTag(editTag)" :key="ndx">{{editTag.value}} <span class="close">&times;</span></span>
+    </div>
     <div class="input-label">
       Tags
       <v-popover class="input-popover" trigger="hover" placement="right">

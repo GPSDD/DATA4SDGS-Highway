@@ -6,12 +6,11 @@
         placeholder="Search and filter datasets"
         class="search-input js-search-input"
         v-model.trim="queryState"
-        ref="search-input"
-        
+        ref="search-input"        
       >
       <icon-component   :class="['search-icon', '-round', '-xsmall', { '-inverted': isOpen }]"
                       name="icon-chevron-down" ></icon-component >
-    </div >
+    </div>
     <div v-if="selectedFiltersLabels.length > 0" class="c-filters" >
       <tag-component v-for="filter in selectedFiltersLabels" icon="close" >
         <span >{{filter.label}}</span >

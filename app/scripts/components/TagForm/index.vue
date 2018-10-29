@@ -19,9 +19,8 @@ export default {
   },
   created() {
     if (this.editDataset) {
-      console.log(this.editDataset.attributes.vocabulary);
       const tags = this.editDataset.attributes.vocabulary[0].attributes ? this.editDataset.attributes.vocabulary[0].attributes.tags : [''];
-      this.tags = tags.reduce((tagList, tag) => {
+      this.editTags = tags.reduce((tagList, tag) => {
         tagList.push({ value: tag, isOpen: false, filterTags: [], selected: false });
         return tagList;
       }, []);
@@ -34,6 +33,7 @@ export default {
     return {
       tags: [{ value: '', isOpen: false, filterTags: [], selected: false }],
       existingTags: [],
+      editTags: [],
       showResponseError: false,
     };
   },
@@ -64,6 +64,20 @@ export default {
     addTag() {
       this.tags.push({ value: '', isOpen: false, filterTags: [], selected: false });
     },
+    deleteTag(tag) {
+      this.editTags = this.editTags.filter(x => x.value !== tag.value);
+      const tagsWithEmptyRemoved = this.removeEmptyArrayItems(this.editTags);
+      this.updateTags(tagsWithEmptyRemoved);
+    },
+    async updateTags(tags) {
+      API.delete(`dataset/${this.currentDataseId}/vocabulary/legacy`, this.token).then(() => {
+        API.delete(`dataset/${this.currentDataseId}/vocabulary/knowledge_graph`, this.token).then(() => {
+          API.post(`dataset/${this.currentDataseId}/vocabulary`, { legacy: { tags } }, this.token).then(() => {
+            API.post(`dataset/${this.currentDataseId}/vocabulary/knowledge_graph`, { tags }, this.token).then(() => {});
+          });
+        });
+      });
+    },
     filterTags(tag) {
       tag.filterTags = this.existingTags.filter(x =>
                     x.toLowerCase().indexOf(tag.value.toLowerCase().trim()) > -1);
@@ -78,7 +92,7 @@ export default {
     closeTags() {
       this.tags.forEach((tag) => { tag.isOpen = false; });
     },
-    saveTags() {
+    async saveTags() {
       this.showResponseError = false;
       const tagsWithEmptyRemoved = this.removeEmptyArrayItems(this.tags);
 
@@ -88,22 +102,28 @@ export default {
         this.$router.push(`/data-sets/${this.currentDataseId}`);
         return;
       }
-
-      // old vocab tags
-      API.post(`dataset/${this.currentDataseId}/vocabulary`, { legacy: { tags: tagsWithEmptyRemoved } }, this.token).then(() => {
-        // graph tags
-        API.post(`dataset/${this.currentDataseId}/vocabulary/knowledge_graph`, { tags: tagsWithEmptyRemoved }, this.token).then(() => {
-          // send email
+      if (this.editTags && this.editTags.length > 0) {
+        let editTagsWithEmptyRemoved = this.removeEmptyArrayItems(this.editTags);
+        editTagsWithEmptyRemoved = editTagsWithEmptyRemoved.concat(tagsWithEmptyRemoved);
+        await this.updateTags(editTagsWithEmptyRemoved);
+        this.$router.push(`/data-sets/${this.currentDataseId}`);
+      } else {
+        API.post(`dataset/${this.currentDataseId}/vocabulary`, { legacy: { tags: tagsWithEmptyRemoved } }, this.token).then(() => {
+          // graph tags
+          API.post(`dataset/${this.currentDataseId}/vocabulary/knowledge_graph`, { tags: tagsWithEmptyRemoved }, this.token).then(() => {
+            // send email
+            this.$router.push(`/data-sets/${this.currentDataseId}`);
+          }).catch((error) => {
+            this.showResponseError = true;
+            console.error(error);
+          });
           this.$router.push(`/data-sets/${this.currentDataseId}`);
         }).catch((error) => {
           this.showResponseError = true;
           console.error(error);
         });
-        this.$router.push(`/data-sets/${this.currentDataseId}`);
-      }).catch((error) => {
-        this.showResponseError = true;
-        console.error(error);
-      });
+      }
+      // old vocab tags
     }
   },
   watch: {},
