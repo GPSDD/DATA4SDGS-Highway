@@ -61,7 +61,7 @@
           </ul>
         </div>
 
-        <div class="sidebar-links-section" v-if="metadata.dataDownloadUrl && metadata.dataDownloadUrl.csv">
+        <div class="sidebar-links-section" v-if="metadata && metadata.dataDownloadUrl && metadata.dataDownloadUrl.csv">
            <span class="sidebar-links-heading">
             <icon-component name="icon-external-link" class="-small"></icon-component>
             <span class="sidebar-links-heading-text">External Integrations</span>            
@@ -75,7 +75,7 @@
             </li> -->
           </ul>
         </div>
-        <div class="sidebar-links-section" v-if="metadata.info && metadata.info.example">
+        <div class="sidebar-links-section" v-if="metadata && metadata.info && metadata.info.example">
           <span class="sidebar-links-heading">
             Examples
           </span>
