@@ -53,6 +53,7 @@ export default {
         language: 'en',
         name: 'name',
         sourceOrganization: '',
+        description: '',
         sourceUrl: '',
         dataDownloadUrl: '',
         dataSourceEndpoint: '',
@@ -98,15 +99,14 @@ export default {
           window.scrollTo(0, 0);
           return;
         }
+        const metadataWithEmptyRemoved = this.removeEmptyKeys(this.metadata);
         if (this.metadata.info.length > 0) {
           if (this.metadata.info.indexOf('{') === -1) {
-            this.metadata.info = { info: this.metadata.info };
+            metadataWithEmptyRemoved.info = { info: this.metadata.info };
           } else {
-            this.metadata.info = JSON.parse(this.metadata.info);
+            metadataWithEmptyRemoved.info = JSON.parse(this.metadata.info);
           }
         }
-        const metadataWithEmptyRemoved = this.removeEmptyKeys(this.metadata);
-        console.log(this.datasetId);
         const datasetId = this.datasetId ? this.datasetId : this.editDataset.id;
         API.post(`dataset/${datasetId}/metadata`, metadataWithEmptyRemoved, this.token).then(() => {
           this.nextTab();

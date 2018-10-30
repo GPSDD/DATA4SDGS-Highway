@@ -174,7 +174,32 @@
           >
         </div > 
     </div >            
-    <!-- <div class="container" >
+    <div class="container" >
+      <div class="input-label">
+        Description
+        <v-popover class="input-popover" trigger="hover" placement="right">
+            <icon-component name="icon-info" class="-small"></icon-component>
+            <div class="tooltip-container" slot="popover">
+              <span class="tooltip-heading">
+                Info
+              </span>
+              <p class="tooltip-content">
+                  Any additional details about the dataset.
+              </p>
+            </div>
+          </v-popover>
+        </div>
+      <div class="input" >
+        <textarea
+          type="text"
+          placeholder="Description"
+          class="search-input js-search-input"
+          v-model.trim="metadata.description"
+          name="metadata description"
+        ></textarea>
+      </div > 
+  </div >            
+  <!-- <div class="container" >
         <div class="input-label">Units</div>
         <div class="input" >
           <input

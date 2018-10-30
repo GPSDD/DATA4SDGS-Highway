@@ -70,12 +70,14 @@ export default {
       this.updateTags(tagsWithEmptyRemoved);
     },
     async updateTags(tags) {
-      API.delete(`dataset/${this.currentDataseId}/vocabulary/legacy`, this.token).then(() => {
-        API.delete(`dataset/${this.currentDataseId}/vocabulary/knowledge_graph`, this.token).then(() => {
-          API.post(`dataset/${this.currentDataseId}/vocabulary`, { legacy: { tags } }, this.token).then(() => {
-            API.post(`dataset/${this.currentDataseId}/vocabulary/knowledge_graph`, { tags }, this.token).then(() => {});
-          });
-        });
+      return new Promise((resolve, reject) => {
+        API.delete(`dataset/${this.currentDataseId}/vocabulary/legacy`, this.token).then(() => {
+          API.delete(`dataset/${this.currentDataseId}/vocabulary/knowledge_graph`, this.token).then(() => {
+            API.post(`dataset/${this.currentDataseId}/vocabulary`, { legacy: { tags } }, this.token).then(() => {
+              resolve();
+            }).catch(() => { this.showResponseError = true; reject(); });
+          }).catch(() => { this.showResponseError = true; reject(); });
+        }).catch(() => { this.showResponseError = true; reject(); });
       });
     },
     filterTags(tag) {

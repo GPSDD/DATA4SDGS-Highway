@@ -30,7 +30,7 @@
     <div class="row">
       <div class="column small-12 medium-8" v-if="example.content">
         <h2 class="c-examples-detail-content__title">Description</h2>
-        <p class="c-examples-detail-content__text">{{example.content}}</p>
+        <p class="c-examples-detail-content__text" v-html="example.content"></p>
         <p v-if="example.url">
           <a class="c-button -link" :href="example.url" target="_blank" rel="noopener noreferrer">Go to site</a>
         </p>

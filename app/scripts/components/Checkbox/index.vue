@@ -39,6 +39,12 @@
       getId(value, index) {
         return `checkbox-${value}-${index}`;
       },
+      updateItems(checkbox) {
+        // only one selected filter at once.
+        this.selectedFilters = [];
+        console.log(checkbox);
+        console.log(this.selectedFilters);
+      }
     },
     watch: {
       selectedFilters() {

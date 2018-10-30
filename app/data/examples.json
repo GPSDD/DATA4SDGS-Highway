@@ -71,6 +71,29 @@
     ]
   },
   {
+    "id": "youth-visualization-un-stats",
+    "title": "Youth Indicators Visualization Application",
+    "url": "https://youthindicators.herokuapp.com/",
+    "author": "Emmanuel Nelson",
+    "date": "October 9, 2018",
+    "sourceCode": "https://github.com/manuelnelson/youth-visualizer",
+    "intro": "An application to help users create visualizations utilizing the UN Stats database.",
+    "content": "Example story <a href='https://youthindicators.herokuapp.com/story/5babd337f53c33001b7f924e'>here</a>",
+    "dataSources":[{
+      "name":"Poverty below International Poverty Line",
+      "id":"09aa1cb8-7505-43d9-8a23-8be037558179",
+      "url":"https://www.apihighways.org/data-sets/09aa1cb8-7505-43d9-8a23-8be037558179",
+      "originUrl":"https://unstats.un.org/SDGAPI/swagger/#!/" 
+    },{
+      "name":"Mother Mortality Ratio",
+      "id":"ac8008f5-8a47-497c-b66d-d95373049fe5",
+      "url":"https://www.apihighways.org/data-sets/ac8008f5-8a47-497c-b66d-d95373049fe5",
+      "originUrl":"https://unstats.un.org/SDGAPI/swagger/#!/" 
+    }],
+    "thumb": "/static/examples/youth-visualization-un-stats.png",
+    "html": "<iframe src='https://youthindicators.herokuapp.com/story/5babd337f53c33001b7f924e' width='100%' height='600px' frameborder='0'></iframe>"
+  },
+  {
       "id": "resource-projects-vs-world-bank-visualization",
       "title": "Resource Projects vs World Bank Visualization",
       "url": "https://gpsdd.github.io/Resource-Projects-Visualizations/",
@@ -92,5 +115,82 @@
       }],
       "thumb": "/static/examples/resource-watch-vs-world-bank-visualization.png",
       "html": "<iframe src='https://gpsdd.github.io/Resource-Projects-Visualizations/' width='100%' height='600px' frameborder='0'></iframe>"
+  },
+  {
+    "id": "2011-poverty-headcount-ratio",
+    "title": "2011 Poverty Headcount Ratio at $1.90/day (% of Population)",
+    "url": "https://github.com/mbeveridge/SDG-API_Extreme-Poverty_-WorldBank-",
+    "author": "Mark Beveridge",
+    "date": "April 18, 2018",
+    "sourceCode": "https://github.com/mbeveridge/SDG-API_Extreme-Poverty_-WorldBank-",
+    "intro": "Analysis using R on 2011 Poverty Headcount Ratio at $1.90/day (% of Population)",
+    "dataSources":[{
+      "name":"POVERTY HEADCOUNT RATIO AT $1.90 A DAY",
+      "id":"aa1c5c53-cb73-4b29-94f4-5b1695d37dc5",
+      "url":"https://www.apihighways.org/data-sets/aa1c5c53-cb73-4b29-94f4-5b1695d37dc5",
+      "originUrl":"https://unstats.un.org/SDGAPI/swagger/#!/" 
+    }],
+    "thumb": "/static/examples/albania.png",
+    "html": "<img src='/static/examples/albania.png' /><img src='/static/examples/uganda.png' />"
+  },
+  {
+    "id": "SDG-API_Extreme-Poverty",
+    "title": "PERCENTAGE OF POPULATION LIVING UNDER 2011 PPP$ 1.90 PER DAY.",
+    "url": "https://github.com/mbeveridge/SDG-API_Extreme-Poverty",
+    "author": "Mark Beveridge",
+    "date": "April 18, 2018",
+    "sourceCode": "https://github.com/mbeveridge/SDG-API_Extreme-Poverty",
+    "intro": "Analysis using R on dataset '2011 PPP and $1.90/day poverty line'",
+    "dataSources":[{
+      "name":"Percentage of Population Living under 2011 ppp$ 1.90 per day.",
+      "id":"6a6de0b8-e544-495a-93ab-e8bc3c59fb20",
+      "url":"https://www.apihighways.org/data-sets/6a6de0b8-e544-495a-93ab-e8bc3c59fb20",
+      "originUrl":"https://github.com/devinit/digital-platform/blob/master/user-data/poverty-190.zip?raw=true" 
+    }],
+    "thumb": "/static/examples/unnamed-chunk-6-1.png",
+    "html": "<img src='/static/examples/unnamed-chunk-6-1.png' /><img src='/static/examples/unnamed-chunk-8-1.png' />"
+  },
+  {
+    "id": "air-quality-and-population",
+    "title": "2017 Population (CIESIN) and Air Quality",
+    "url": "https://codepen.io/alaurenz/pen/dmNoNR",
+    "author": "Adrian Laurenzi",
+    "date": "April 18, 2018",
+    "sourceCode": "https://codepen.io/alaurenz/pen/dmNoNR",
+    "intro": "Using map data provided by Socioeconomic Data and Applications Center (SEDAC) and Air quality data provided from Open AQ",
+    "dataSources":[{
+      "name":"Global NRT Air Quality Data.",
+      "id":"9b0455e0-ee4b-49fd-92d3-19962e918819",
+      "url":"https://www.apihighways.org/data-sets/9b0455e0-ee4b-49fd-92d3-19962e918819",
+      "originUrl":"https://openaq.org/#/locations" 
+    },
+    {
+      "name":"SOCIOECONOMIC DATA AND APPLICATIONS CENTER (SEDAC) MAP SERVICES",
+      "id":"3d67294a-28fc-4dd5-af21-308f65673074",
+      "url":"https://www.apihighways.org/data-sets/3d67294a-28fc-4dd5-af21-308f65673074",
+      "originUrl":"http://sedac.ciesin.columbia.edu/maps/services#Gridded%20Population%20of%20the%20World" 
+    }],
+    "thumb": "/static/examples/population-air-quality.png",
+    "html": "<iframe src='https://codepen.io/alaurenz/full/dmNoNR/' width='100%' height='600px' frameborder='0'></iframe>"
+  },
+  {
+    "id": "resource-watch-hackathon",
+    "title": "Resource Watch Hackathon Materials",
+    "url": "https://github.com/nsuberi/RW_hackathon_materials",
+    "author": "Nathan Suberi",
+    "date": "September 13, 2017",
+    "sourceCode": "https://github.com/nsuberi/RW_hackathon_materials",
+    "intro": "Introductory Materials for the Resource Watch API. Provides useful coding examples of accessing the resource watch API using Python and library Panda for data manipulation.",
+    "dataSources":[{
+      "name":" CURRENT FLOOD EVENTS",
+      "id":"d1917f9e-402c-46a1-abdf-0ab789a179cc",
+      "url":"https://www.apihighways.org/data-sets/d1917f9e-402c-46a1-abdf-0ab789a179cc",
+      "originUrl":"https://resourcewatch.org/data/explore/Current-Floods" 
+    }],
+    "thumb": "",
+    "html": ""
   }
+
+
+
 ]
