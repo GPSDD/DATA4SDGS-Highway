@@ -247,7 +247,7 @@
             window.open('https://api.resourcewatch.org/', '_blank');
             break;
           case 'hdx':
-            window.open('https://data.humdata.org/faq#body-faq-HDX_API', '_blank');
+            window.open('https://data.humdata.org/documentation', '_blank');
             break;
           case 'genericindex':
             window.open(this.selectedDataset.connectorUrl, '_blank');
