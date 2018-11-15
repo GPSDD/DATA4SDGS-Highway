@@ -1,0 +1,19 @@
+@import '../../../styles/variables';
+
+.dashboard-info {
+  display: flex;
+  &__item {
+    width: 33.3333%;
+  }
+  &__title {
+    display: block;
+    font-size: 20px;
+  }
+  &__stat {
+    display: block;
+    font-size: 34px;
+  }
+  &:last-child {
+    padding-bottom: 80px;
+  }
+}

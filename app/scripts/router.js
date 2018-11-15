@@ -4,6 +4,7 @@ import VueRouter from 'vue-router';
 import HomeComponent from 'components/Home';
 import PlaygroundDetailComponent from 'components/PlaygroundDetail';
 import PlaygroundComponent from 'components/Playground';
+import Dashboard from 'components/Dashboard';
 import AddDatasetComponent from 'components/AddDataset';
 import EditDatasetComponent from 'components/EditDataset';
 import HackathonComponent from 'components/Hackathon';
@@ -59,6 +60,15 @@ const routes = [
     path: '/data-sets/:dataset/edit',
     components: {
       default: EditDatasetComponent,
+      HeaderComponent,
+      FooterComponent,
+    },
+  },
+  {
+    path: '/dashboard',
+    components: {
+      default: Dashboard,
+      HeroComponent,
       HeaderComponent,
       FooterComponent,
     },

@@ -41,6 +41,7 @@ export default {
       computedLocation.token = location === '/token';
       computedLocation.partners = location === '/partner-apis';
       computedLocation.hackathon = location === '/hackathon';
+      computedLocation.dashboard = location === '/dashboard';
       computedLocation.communities = location.indexOf('communities') > -1;
       computedLocation.examples = location === '/examples';
       return computedLocation;
