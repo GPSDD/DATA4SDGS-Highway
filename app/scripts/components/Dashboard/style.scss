@@ -1,19 +1,42 @@
 @import '../../../styles/variables';
 
-.dashboard-info {
-  display: flex;
-  &__item {
-    width: 33.3333%;
+.dashboard {
+  &-info {
+    display: flex;
+    &__item {
+      width: 33.3333%;
+    }
+    &__title {
+      display: block;
+      font-size: 20px;
+    }
+    &__stat {
+      display: block;
+      font-size: 34px;
+    }
+    &:last-child {
+      padding-bottom: 80px;
+    }  
   }
-  &__title {
-    display: block;
-    font-size: 20px;
-  }
-  &__stat {
-    display: block;
-    font-size: 34px;
-  }
-  &:last-child {
-    padding-bottom: 80px;
+  &-connector {
+    display: flex;
+    flex-wrap: wrap;
+    &__item {
+      width: 50%;
+      margin-bottom: 40px;
+      padding-right: 20px;
+      &:nth-child(even){
+        padding-left: 20px;
+      }
+    }
+    &__title {
+      display: block;
+      font-size: 24px;
+      font-weight: bold;
+    }
+    &__stat {
+      display: block;
+      font-size: 22px;
+    }
   }
 }
