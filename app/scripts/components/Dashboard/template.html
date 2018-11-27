@@ -88,7 +88,7 @@
               Datasets: {{worldBankCount}}
             </span>          
             <span class="dashboard-connector__stat">Data owner: <a href="mailto:bob@worldbank.com">bob@worldbank.com</a></span>          
-            <span class="dashboard-connector__stat">Connector Status: Up (last ran 11/1/2018)</span>          
+            <span class="dashboard-connector__stat">Connector Status: last ran {{worldBankLastRan}}</span>          
             <span class="dashboard-connector__stat" v-if="failedWorldBankCount != -1">
                 <v-popover
                 trigger="hover"
@@ -127,8 +127,8 @@
 
                Datasets: {{unCount}}
             </span>          
-            <span class="dashboard-connector__stat">Data owner: <a href="mailto:bob@worldbank.com">bob@unstats.com</a></span>          
-            <span class="dashboard-connector__stat">Connector Status: Up (last ran 11/1/2018)</span>    
+            <span class="dashboard-connector__stat">Data owner: <a href="mailto:gonzalezmorales@un.org">gonzalezmorales@un.org</a></span>          
+            <span class="dashboard-connector__stat">Connector Status: Last ran {{unLastRan}}</span>    
             <span class="dashboard-connector__stat" v-if="failedUnCount != -1">
                 <v-popover
                 trigger="hover"
@@ -168,8 +168,8 @@
 
               Datasets: {{hdxCount}}
             </span>          
-            <span class="dashboard-connector__stat">Data owner: <a href="mailto:bob@worldbank.com">bob@hdx.com</a></span>          
-            <span class="dashboard-connector__stat">Connector Status: Up (last ran 11/1/2018)</span>          
+            <span class="dashboard-connector__stat">Data owner: <a href="mailto:hendrix@un.org">hendrix@un.org</a></span>          
+            <span class="dashboard-connector__stat">Connector Status: Last ran {{hdxLastRan}}</span>          
             <span class="dashboard-connector__stat" v-if="failedHdxCount != -1">
                 <v-popover
                 trigger="hover"
@@ -208,8 +208,8 @@
   
                 Datasets: {{resourceWatchCount}}
               </span>          
-              <span class="dashboard-connector__stat">Data owner: <a href="mailto:bob@worldbank.com">bob@resourcewatch.com</a></span>          
-              <span class="dashboard-connector__stat">Connector Status: Up (last ran {{resourceWatchLastRan}})</span>          
+              <span class="dashboard-connector__stat">Data owner: <a href="mailto:FGassert@wri.org">FGassert@wri.org</a></span>          
+              <span class="dashboard-connector__stat">Connector Status: Last ran {{resourceWatchLastRan}}</span>          
               <span class="dashboard-connector__stat" v-if="resourceWatchCount != -1">
                   <v-popover
                   trigger="hover"

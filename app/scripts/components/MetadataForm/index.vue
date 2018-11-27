@@ -100,7 +100,7 @@ export default {
           return;
         }
         const metadataWithEmptyRemoved = this.removeEmptyKeys(this.metadata);
-        if (this.metadata.info.length > 0) {
+        if (this.metadata.info && this.metadata.info.length > 0) {
           if (this.metadata.info.indexOf('{') === -1) {
             metadataWithEmptyRemoved.info = { info: this.metadata.info };
           } else {
@@ -123,7 +123,7 @@ export default {
           window.scrollTo(0, 0);
           return;
         }
-        if (this.metadata.info.length > 0) {
+        if (this.metadata.info && this.metadata.info.length > 0) {
           if (this.metadata.info.indexOf('{') === -1) {
             this.metadata.info = { info: this.metadata.info };
           } else {
