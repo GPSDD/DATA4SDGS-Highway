@@ -23,8 +23,9 @@
       "provider": true
     },
     {
-      "value": "United Nations Statistics Division",
-      "label": "UNITED NATIONS STATISTICS DIVISION"
+      "value": "un",
+      "label": "UNITED NATIONS STATISTICS DIVISION",
+      "provider": true
     },
     {
       "value": "carto",

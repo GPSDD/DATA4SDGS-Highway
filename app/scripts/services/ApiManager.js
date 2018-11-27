@@ -25,7 +25,7 @@ class API {
     return fetch(url, this.config).then(handleResponse);
   }
   getWithAuth(endpoint, params, token) {
-    const url = `${this.baseURL}/${endpoint}${params ? `?${params}` : ''}`;
+    const url = `${this.baseURL}/api/${version}/${endpoint}${params ? `?${params}` : ''}`;
     return fetch(url, {
       method: 'GET',
       headers: {
