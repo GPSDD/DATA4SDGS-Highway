@@ -40,7 +40,10 @@
               <h3 class="c-examples-detail-content__sub-title">Data Sources</h3>
           </div>
           <ul>
-            <li v-for="datasource in example.dataSources" class="c-examples-detail-content__list-item" :key="datasource.id"><a :href="datasource.url">{{datasource.name}}</a></li>
+            <li v-for="datasource in example.dataSources" class="c-examples-detail-content__list-item" :key="datasource.id">
+              <a v-if="datasource.url" :href="datasource.url">{{datasource.name}}</a>
+              <a v-if="!datasource.url && datasource.originUrl" :href="datasource.originUrl">{{datasource.name}}</a>
+            </li>
           </ul>
       </div>
     </div>

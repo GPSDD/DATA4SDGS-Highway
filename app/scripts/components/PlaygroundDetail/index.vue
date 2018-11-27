@@ -27,7 +27,7 @@
     created() {
       window.addEventListener('scroll', this.handleScroll);
     },
-    mounted() {
+    async mounted() {
       if (
         this.showCodeExamples &&
         this.metadata &&
@@ -55,10 +55,14 @@
       return {
         fixSidebar: !!header && window.pageYOffset >= header.offsetHeight,
         activeAnchor: 'about',
+        showDataWorld: true,
         loginLink: `http://api.apihighways.org/auth/login?callbackUrl=${window.location.origin}/token&token=true`
       };
     },
     computed: {
+      dataWorldUrl() {
+        return `https://data.world/gpsdd/${this.selectedDataset.id}`;
+      },
       showCustomLicenseInfo() {
         return this.metadata && this.metadata.info && Object.keys(this.metadata.info).length > 0 && this.metadata.info.license && Object.keys(this.metadata.info.license).length > 0 && this.metadata.license.toLowerCase() === 'other';
       },

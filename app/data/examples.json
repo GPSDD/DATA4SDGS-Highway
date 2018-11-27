@@ -189,7 +189,21 @@
     }],
     "thumb": "",
     "html": ""
-  }
+  }, {
+    "id": "illegal-fishing",
+    "title": "Illegal Fishing",
+    "url": "https://illegal-fishing.herokuapp.com/",
+    "author": "Emmanuel Nelson",
+    "date": "November 1, 2018",
+    "sourceCode": "https://github.com/manuelnelson/Illegal-fishing",
+    "intro": "Map visualization of illegal fishing anywhere in the world filtered by date",
+    "dataSources":[{
+      "name":" VIIRS Boat Detection (VBD)",
+      "originUrl":"https://www.ngdc.noaa.gov/eog/viirs/download_boat.html" 
+    }],
+    "thumb": "/static/examples/illegal-fishing.png",
+    "html": "<p><a href='https://illegal-fishing.herokuapp.com/' target='_blank'>View application here.</a><br /></p><iframe src='https://illegal-fishing.herokuapp.com/' width='100%' height='600px' frameborder='0'></iframe>"
+  } 
 
 
 

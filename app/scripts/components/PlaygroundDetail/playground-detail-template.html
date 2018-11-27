@@ -61,18 +61,33 @@
           </ul>
         </div>
 
-        <div class="sidebar-links-section" v-if="metadata && metadata.dataDownloadUrl && metadata.dataDownloadUrl.csv">
+        <div class="sidebar-links-section" v-if="(metadata && metadata.dataDownloadUrl && metadata.dataDownloadUrl.csv) || showDataWorld">
            <span class="sidebar-links-heading">
             <icon-component name="icon-external-link" class="-small"></icon-component>
             <span class="sidebar-links-heading-text">External Integrations</span>            
           </span>
           <ul class="sidebar-links -integrations">
-            <li>
+            <li v-if="metadata && metadata.dataDownloadUrl && metadata.dataDownloadUrl.csv">
               <a target="_blank" :href="cartoCsvLink">CARTO</a>
             </li>
-            <!-- <li>
-              <a href="metadata.dataDownloadUrl.json">Data.World</a>
-            </li> -->
+            <li>
+              <a v-if="showDataWorld" target="_blank" :href="dataWorldUrl">Data.World</a>
+              <v-popover
+                trigger="hover"
+                placement="top"
+              >
+              <icon-component name="icon-info" class="-small"></icon-component>
+              <div class="tooltip-container" slot="popover">
+                <span class="tooltip-heading">
+                  Note:
+                </span>
+                <p class="tooltip-content">
+                  Not all datasets have been imported correctly into data.world.  You may end up at a Page Not Found.
+                </p>
+              </div>
+            </v-popover>
+
+            </li>
           </ul>
         </div>
         <div class="sidebar-links-section" v-if="metadata && metadata.info && metadata.info.example">
@@ -83,9 +98,6 @@
            <li>
              <a target="_blank" :href="metadata.info.example">View Example</a>
            </li>
-           <!-- <li>
-             <a href="metadata.dataDownloadUrl.json">Data.World</a>
-           </li> -->
          </ul>
        </div>
        <div class="sidebar-links-section">
