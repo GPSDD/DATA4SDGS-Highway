@@ -105,6 +105,9 @@
                 </div>
               </v-popover>
               Failed Datasets: {{failedWorldBankCount}}
+              <ul>
+                <li v-for="(errorMessage, ndx) in Object.keys(failedGroupByWorldBank)" :key="ndx">({{failedGroupByWorldBank[errorMessage].length}}) : {{errorMessage.substring(0,80)}}</li>
+              </ul>
             </span>          
           </div>
           <div class="dashboard-connector__item">
@@ -145,6 +148,9 @@
                 </div>
               </v-popover>
               Failed Datasets: {{failedUnCount}}
+              <ul>
+                <li v-for="(errorMessage, ndx) in Object.keys(failedGroupByUn)" :key="ndx">({{failedGroupByUn[errorMessage].length}}) : {{errorMessage.substring(0,80)}}</li>
+              </ul>
             </span>          
       
           </div>
@@ -186,6 +192,9 @@
                 </div>
               </v-popover>
               Failed Datasets: {{failedHdxCount}}
+              <!-- <ul>
+                <li v-for="(errorMessage, ndx) in Object.keys(failedGroupByHdx)" :key="ndx">({{failedGroupByHdx[errorMessage].length}}) : {{errorMessage.substring(0,80)}}</li>
+              </ul> -->
             </span>          
           </div>
           <div class="dashboard-connector__item">
@@ -226,10 +235,63 @@
                   </div>
                 </v-popover>
                 Failed Datasets: {{failedResourceWatchCount}}
+                <ul>
+                  <li v-for="(errorMessage, ndx) in Object.keys(failedGroupByResourceWatch)" :key="ndx">({{failedGroupByResourceWatch[errorMessage].length}}) : {{errorMessage.substring(0,80)}}</li>
+                </ul>
+  
               </span>          
   
-              </div>
           </div>
+          <div class="dashboard-connector__item">
+            <span class="dashboard-connector__title">HDX Full</span>          
+            <span class="dashboard-connector__stat" v-if="hdxFullCount != -1">
+                <v-popover
+                trigger="hover"
+                placement="top"
+              >
+                <icon-component name="icon-info" class="-small"></icon-component>
+                <div class="tooltip-container" slot="popover">
+                  <span class="tooltip-heading">
+                    Query
+                  </span>
+                  <p class="tooltip-content">
+                    https://api.apihighways.org/dataset?vocabulary[legacy]=hdx-full-import&page[size]=10000
+                  </p>
+                </div>
+              </v-popover>
+
+              Datasets: {{hdxFullCount}}
+            </span>          
+            <span class="dashboard-connector__stat">Data owner: <a href="mailto:hendrix@un.org">hendrix@un.org</a></span></span>          
+            <span class="dashboard-connector__stat">Connector Status: Last ran {{hdxFullLastRan}}</span>          
+            <span class="dashboard-connector__stat" v-if="hdxFullCount != -1">
+                <v-popover
+                trigger="hover"
+                placement="top"
+              >
+                <icon-component name="icon-info" class="-small"></icon-component>
+                <div class="tooltip-container" slot="popover">
+                  <span class="tooltip-heading">
+                    Query
+                  </span>
+                  <p class="tooltip-content">
+                      https://api.apihighways.org/dataset?provider=resourcewatch&status=failed&page[size]=10000
+                  </p>
+                </div>
+              </v-popover>
+              Failed Datasets: {{failedResourceWatchCount}}
+              <ul>
+                <li v-for="(errorMessage, ndx) in Object.keys(failedGroupByResourceWatch)" :key="ndx">({{failedGroupByResourceWatch[errorMessage].length}}) : {{errorMessage.substring(0,80)}}</li>
+              </ul>
+              All Datasets
+              <ul>
+                <li v-for="(dataset, ndx) in Object.keys(hdxFullDatasets)" :key="ndx">{{dataset}} <br> id: {{hdxFullDatasets[dataset][hdxFullDatasets[dataset].length-1].id}} <br> last updated: {{hdxFullDatasets[dataset][hdxFullDatasets[dataset].length-1].attributes.updatedAt}}</li>
+              </ul>
+
+            </span>          
+
+        </div>
+      </div>
       </div>    
   </div>
 </section>

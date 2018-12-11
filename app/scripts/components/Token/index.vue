@@ -42,7 +42,7 @@
         return `/data-sets/${dataset.id}/edit?token=${this.$route.query.token}`;
       },
       async getUserDatasets() {
-        const user = await API.getWithAuth('auth/check-logged', null, this.$route.query.token);
+        const user = await API.getAtRoot('auth/check-logged', null, this.$route.query.token);
         if (user && user.id) {
           const response = await API.get('dataset', `userId=${user.id}&includes=metadata&page[number]=${this.pageNum}`);
           if (this.pageNum === 1) {

@@ -17,7 +17,12 @@
     }
     throw new Error(d.statusText);
   };
-  const formatDate = d => `${d.getMonth() + 1}/${d.getDate() + 1}/${d.getYear() + 1900}`;
+
+  const groupBy = (list, props) => list.reduce((a, b) => {
+    (a[b.attributes[props]] = a[b.attributes[props]] || []).push(b);
+    return a;
+  }, {});
+  
 
   export default {
     name: 'admin-dashboard-component',
@@ -42,31 +47,47 @@
       // });
       fetch('https://api.apihighways.org/dataset?provider=worldbank&page[size]=10000', reqOptions).then(handleResponse).then((result) => {
         this.worldBankCount = result.data.length;
-        this.worldBankLastRan = formatDate(new Date(result.data[0].attributes.updatedAt));
+        this.worldBankLastRan = this.formatDate(new Date(result.data[0].attributes.updatedAt));
       });
       fetch('https://api.apihighways.org/dataset?provider=un&page[size]=10000', reqOptions).then(handleResponse).then((result) => {
         this.unCount = result.data.length;
-        this.unLastRan = formatDate(new Date(result.data[0].attributes.updatedAt));
+        this.unLastRan = this.formatDate(new Date(result.data[0].attributes.updatedAt));
       });
       fetch('https://api.apihighways.org/dataset?provider=hdx&page[size]=10000', reqOptions).then(handleResponse).then((result) => {
         this.hdxCount = result.data.length;
-        this.hdxLastRan = formatDate(new Date(result.data[0].attributes.updatedAt));
+        this.hdxLastRan = this.formatDate(new Date(result.data[0].attributes.updatedAt));
       });
       fetch('https://api.apihighways.org/dataset?provider=resourcewatch&page[size]=10000', reqOptions).then(handleResponse).then((result) => {
         this.resourceWatchCount = result.data.length;
-        this.resourceWatchLastRan = formatDate(new Date(result.data[0].attributes.updatedAt));
+        this.resourceWatchLastRan = this.formatDate(new Date(result.data[0].attributes.updatedAt));
+      });
+      fetch('https://api.apihighways.org/dataset?vocabulary[legacy]=hdx-full-import&page[size]=10000', reqOptions).then(handleResponse).then((result) => {
+        const datasets = groupBy(result.data, 'name'); // we need to groupby because when deleting, vocabulary doesn't always get deleted, and thus appears here
+        console.log(datasets);
+        this.hdxFullCount = Object.keys(datasets).length;
+        this.hdxFullLastRan = this.formatDate(new Date(
+          datasets[Object.keys(datasets)[0]][0].attributes.updatedAt));
+        this.hdxFullDatasets = datasets;
       });
       fetch('https://api.apihighways.org/dataset?provider=worldbank&status=failed&page[size]=10000', reqOptions).then(handleResponse).then((result) => {
         this.failedWorldBankCount = result.data.length;
+        this.failedGroupByWorldBank = groupBy(result.data, 'errorMessage');
       });
       fetch('https://api.apihighways.org/dataset?provider=un&status=failed&page[size]=10000', reqOptions).then(handleResponse).then((result) => {
         this.failedUnCount = result.data.length;
+        this.failedGroupByUn = groupBy(result.data, 'errorMessage');
       });
       fetch('https://api.apihighways.org/dataset?provider=hdx&status=failed&page[size]=10000', reqOptions).then(handleResponse).then((result) => {
         this.failedHdxCount = result.data.length;
+        this.failedGroupByHdx = groupBy(result.data, 'errorMessage');
       });
       fetch('https://api.apihighways.org/dataset?provider=resourcewatch&status=failed&page[size]=10000', reqOptions).then(handleResponse).then((result) => {
         this.failedResourceWatchCount = result.data.length;
+        this.failedGroupByResourceWatch = groupBy(result.data, 'errorMessage');
+      });
+      fetch('https://api.apihighways.org/dataset?vocabulary[legacy]=hdx-full-import&status=failed&page[size]=10000', reqOptions).then(handleResponse).then((result) => {
+        this.failedHdxCount = result.data.length;
+        this.failedGroupByHdx = groupBy(result.data, 'errorMessage');
       });
     },
     data() {
@@ -75,15 +96,29 @@
         unCount: -1,
         hdxCount: -1,
         resourceWatchCount: -1,
+        hdxFullCount: -1,
         failedWorldBankCount: -1,
         failedUnCount: -1,
         failedHdxCount: -1,
+        failedHdxFullCount: -1,
         failedResourceWatchCount: -1,
         worldBanklastRan: -1,
         unLastRan: -1,
         hdxLastRan: -1,
+        hdxFullLastRan: -1,
         resourceWatchLastRan: -1,
+        failedGroupByWorldBank: [],
+        failedGroupByUn: [],
+        failedGroupByHdx: [],
+        failedGroupByHdxFull: [],
+        failedGroupByResourceWatch: [],
+        hdxFullDatasets: []
       };
+    },
+    methods: {
+      formatDate(d) {
+        return `${d.getMonth() + 1}/${d.getDate() + 1}/${d.getYear() + 1900}`;
+      }
     }
   };
 </script>

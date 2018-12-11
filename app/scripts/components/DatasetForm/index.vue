@@ -46,7 +46,7 @@ export default {
       showResponseError: false,
       dataset: {
         connectorType: '',
-        provider: { name: '' },
+        provider: '',
         connectorUrl: '',
         dataPath: '',
         application: ['data4sdgs'],

@@ -10,5 +10,6 @@
       <dataset-component :dataset="dataset"></dataset-component>
     </div>
   </paginate>
+  <span v-if="paginate.datasets.page === 8" style="color:white">Just because there's no more paging here, there may be more results.  Filter the search more to find the dataset you're in search of.</span>
   <paginate-links v-if="datasets.length > 12" class="pagination" for="datasets" :async="true" :limit="2" :show-step-links="true"></paginate-links>
 </div>

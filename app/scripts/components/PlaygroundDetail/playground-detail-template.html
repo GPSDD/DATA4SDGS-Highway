@@ -71,7 +71,7 @@
               <a target="_blank" :href="cartoCsvLink">CARTO</a>
             </li>
             <li>
-              <a v-if="showDataWorld" target="_blank" :href="dataWorldUrl">Data.World</a>
+              <a v-if="showDataWorld" target="_blank" @click="dataWorldClick" :href="dataWorldUrl">Data.World</a>
               <v-popover
                 trigger="hover"
                 placement="top"

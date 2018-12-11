@@ -61,7 +61,7 @@
     },
     computed: {
       dataWorldUrl() {
-        return `https://data.world/gpsdd/${this.selectedDataset.id}`;
+        return this.selectedDataset ? `https://data.world/gpsdd/${this.selectedDataset.id}` : '';
       },
       showCustomLicenseInfo() {
         return this.metadata && this.metadata.info && Object.keys(this.metadata.info).length > 0 && this.metadata.info.license && Object.keys(this.metadata.info.license).length > 0 && this.metadata.license.toLowerCase() === 'other';
@@ -197,6 +197,11 @@
       })
     },
     methods: {
+      dataWorldClick(e) {
+        e.preventDefault();
+        ga('send', 'event', `Dataworld dataset click event for ${this.selectedDataset.name} dataset`, `Dataworld dataset click event for ${this.selectedDataset.name} dataset`, 'Click');
+        window.open(this.dataWorldUrl, '_blank');
+      },
       handleScroll() {
         const header = document.getElementById('header');
         const bigPadding = !!(this.showDocsLink && !this.relatedDatasets);
