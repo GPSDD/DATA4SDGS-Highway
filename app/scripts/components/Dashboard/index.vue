@@ -61,7 +61,7 @@
         this.resourceWatchCount = result.data.length;
         this.resourceWatchLastRan = this.formatDate(new Date(result.data[0].attributes.updatedAt));
       });
-      fetch('https://api.apihighways.org/dataset?vocabulary[legacy]=hdx-full-import&page[size]=10000', reqOptions).then(handleResponse).then((result) => {
+      fetch('https://api.apihighways.org/dataset?vocabulary[legacy]=hdx-full&page[size]=10000', reqOptions).then(handleResponse).then((result) => {
         const datasets = groupBy(result.data, 'name'); // we need to groupby because when deleting, vocabulary doesn't always get deleted, and thus appears here
         console.log(datasets);
         this.hdxFullCount = Object.keys(datasets).length;
@@ -85,7 +85,7 @@
         this.failedResourceWatchCount = result.data.length;
         this.failedGroupByResourceWatch = groupBy(result.data, 'errorMessage');
       });
-      fetch('https://api.apihighways.org/dataset?vocabulary[legacy]=hdx-full-import&status=failed&page[size]=10000', reqOptions).then(handleResponse).then((result) => {
+      fetch('https://api.apihighways.org/dataset?vocabulary[legacy]=hdx-full&status=failed&page[size]=10000', reqOptions).then(handleResponse).then((result) => {
         this.failedHdxCount = result.data.length;
         this.failedGroupByHdx = groupBy(result.data, 'errorMessage');
       });
