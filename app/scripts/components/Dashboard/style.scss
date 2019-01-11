@@ -41,6 +41,12 @@
     .v-popover {
       display: inline-block;
     }
-  
+    li {
+      line-height: 1;
+      margin-bottom: 8px;
+    }
+    .last-updated {
+      font-size: 14px;
+    }
   }
 }

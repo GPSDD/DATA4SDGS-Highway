@@ -255,7 +255,7 @@
                     Query
                   </span>
                   <p class="tooltip-content">
-                    https://api.apihighways.org/dataset?vocabulary[legacy]=hdx-full-import&page[size]=10000
+                    https://api.apihighways.org/dataset?vocabulary[legacy]=hdx-full&page[size]=10000
                   </p>
                 </div>
               </v-popover>
@@ -279,13 +279,13 @@
                   </p>
                 </div>
               </v-popover>
-              Failed Datasets: {{failedResourceWatchCount}}
+              Failed Datasets: {{failedHdxFullCount}}
+              <!-- <ul>
+                <li v-for="(errorMessage, ndx) in Object.keys(failedGroupByHdxFull)" :key="ndx">({{failedGroupByHdxFull[errorMessage].length}}) : {{errorMessage.substring(0,80)}}</li>
+              </ul> -->
+              <br><br>All Datasets
               <ul>
-                <li v-for="(errorMessage, ndx) in Object.keys(failedGroupByResourceWatch)" :key="ndx">({{failedGroupByResourceWatch[errorMessage].length}}) : {{errorMessage.substring(0,80)}}</li>
-              </ul>
-              All Datasets
-              <ul>
-                <li v-for="(dataset, ndx) in Object.keys(hdxFullDatasets)" :key="ndx">{{dataset}} <br> id: {{hdxFullDatasets[dataset][hdxFullDatasets[dataset].length-1].id}} <br> last updated: {{hdxFullDatasets[dataset][hdxFullDatasets[dataset].length-1].attributes.updatedAt}}</li>
+                <li v-for="(dataset, ndx) in Object.keys(hdxFullDatasets)" :key="ndx"><a :href="getUrl(dataset)" target="_blank">{{dataset}}</a> <br> <span class="last-updated">last updated: {{hdxFullDatasets[dataset][hdxFullDatasets[dataset].length-1].attributes.updatedAt}}</span></li>
               </ul>
 
             </span>          
