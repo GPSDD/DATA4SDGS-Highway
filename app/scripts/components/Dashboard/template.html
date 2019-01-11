@@ -280,9 +280,9 @@
                 </div>
               </v-popover>
               Failed Datasets: {{failedHdxFullCount}}
-              <!-- <ul>
-                <li v-for="(errorMessage, ndx) in Object.keys(failedGroupByHdxFull)" :key="ndx">({{failedGroupByHdxFull[errorMessage].length}}) : {{errorMessage.substring(0,80)}}</li>
-              </ul> -->
+              <ul>
+                <li v-for="(dataset, ndx) in failedHdxFullDatasets" :key="ndx"><a :href="getFailedUrl(dataset)" target="_blank">{{dataset.attributes.name}}</a></li>
+              </ul>
               <br><br>All Datasets
               <ul>
                 <li v-for="(dataset, ndx) in Object.keys(hdxFullDatasets)" :key="ndx"><a :href="getUrl(dataset)" target="_blank">{{dataset}}</a> <br> <span class="last-updated">last updated: {{hdxFullDatasets[dataset][hdxFullDatasets[dataset].length-1].attributes.updatedAt}}</span></li>

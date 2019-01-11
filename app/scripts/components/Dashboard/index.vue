@@ -88,6 +88,8 @@
       fetch('https://api.apihighways.org/dataset?vocabulary[legacy]=hdx-full&status=failed&page[size]=10000', reqOptions).then(handleResponse).then((result) => {
         this.failedHdxFullCount = result.data.length;
         this.failedGroupByHdxFull = groupBy(result.data, 'errorMessage');
+        this.failedHdxFullDatasets = result.data;
+        console.log(this.failedHdxFullDatasets);
       });
     },
     data() {
@@ -112,6 +114,7 @@
         failedGroupByHdx: [],
         failedGroupByHdxFull: [],
         failedGroupByResourceWatch: [],
+        failedHdxFullDatasets: [],
         hdxFullDatasets: []
       };
     },
@@ -122,8 +125,10 @@
       getUrl(dataset) {
         const id = this.hdxFullDatasets[dataset][this.hdxFullDatasets[dataset].length - 1].id;
         return `/data-sets/${id}`;
+      },
+      getFailedUrl(dataset) {
+        return `/data-sets/${dataset.id}`;
       }
-
     }
   };
 </script>
